@@ -2,3 +2,7 @@
 body {
     background: var(--tg-theme-secondary-bg-color);
 }
+
+.MainPage {
+    width: 100%;
+}

@@ -1,8 +1,9 @@
 
-.StoryBar {
+.StoryBar{
     overflow-x: auto;
+
     white-space: nowrap;
-    width: 100%;
+    width: 600px;
     display: flex;
     flex-direction:row;
     margin-left: 10px;
