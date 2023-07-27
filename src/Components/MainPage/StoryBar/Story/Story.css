@@ -1,5 +1,6 @@
 .Story {
     display: inline-block;
+    min-width: 60;
     width: 67px;
     height: 67px;
     border-radius: 12px;
