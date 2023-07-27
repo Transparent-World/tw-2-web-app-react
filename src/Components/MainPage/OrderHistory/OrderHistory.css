@@ -1,0 +1,25 @@
+
+.Orderhistory{
+    color:  var(--tg-theme-text-color);
+    margin-top: 20px;
+
+
+}
+
+.OrderHistory_text{
+    display: flex;
+    width: 100px;
+    font-size: 20px;
+    justify-content: flex-end;
+    margin-left: 20px;
+}
+
+.orders {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    flex-direction:row;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}

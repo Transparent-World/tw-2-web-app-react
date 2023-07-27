@@ -1,10 +1,11 @@
 import React from 'react';
-import './ButtonBlock.css'
+import './ButtonsBlock.css';
+import OrderButton from './OrderButton/OrderButton';
 
 const ButtonsBlock = () => {
     return (
-        <div>
-            
+        <div className={'ButtonsBlock'}> 
+            <OrderButton/>
         </div>
     );
 };

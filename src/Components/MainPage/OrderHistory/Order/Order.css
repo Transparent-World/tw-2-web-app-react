@@ -1,0 +1,14 @@
+
+.Order{
+    flex: 0 0 152px;
+    min-width: 152px;
+    width: 152px;
+    height: 78px;
+    flex-shrink: 0;
+    background: var(--tg-theme-bg-color);
+    color: var(--tg-theme-hint-color);
+    margin-left: 20px;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 10px;
+}

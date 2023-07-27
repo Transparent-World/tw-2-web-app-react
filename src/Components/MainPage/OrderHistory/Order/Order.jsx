@@ -3,8 +3,8 @@ import './Order.css'
 
 const Order = () => {
     return (
-        <div>
-            
+        <div className={'Order'} >
+            <a className='order_text'>Заказ №####</a>
         </div>
     );
 };
