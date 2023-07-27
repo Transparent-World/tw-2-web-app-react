@@ -5,7 +5,7 @@ const ChannelLink = () => {
 
     const handleClick = () => {
         // Замените '/other-page' на путь к странице, на которую хотите перейти.
-        window.open('https://t.me/twrussia')
+        window.open('https://t.me/twrussia');
       };
 
     return (

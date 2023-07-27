@@ -1,0 +1,7 @@
+.Story {
+    width: 67px;
+    height: 67px;
+    border-radius: 12px;
+    background: var(--tg-theme-bg-color);
+    margin-left: 10px;
+}
