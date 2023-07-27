@@ -8,7 +8,7 @@
 
 .ChannelLink {
     flex-direction: column;
-    background-color: var(--tg-theme-bg-color);
+    background: var(--tg-theme-bg-color);
 }
 .text1 {
     font-size: 14px;
