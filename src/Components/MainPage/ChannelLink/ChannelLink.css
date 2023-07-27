@@ -1,0 +1,20 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900');
+
+
+* {
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.ChannelLink {
+    flex-direction: column;
+    background-color: var(--tg-theme-bg-color);
+}
+.text1 {
+    font-size: 14px;
+    
+}
+
+.text2 {
+    font-size: 7px;
+}
