@@ -1,4 +1,5 @@
 .Story {
+    display: inline-block;
     width: 67px;
     height: 67px;
     border-radius: 12px;
