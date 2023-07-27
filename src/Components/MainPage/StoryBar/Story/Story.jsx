@@ -9,7 +9,7 @@ const Story = () => {
 
     return (
         <div className={'Story'} onClick={handleClick}>
-            
+            <h6>St</h6>
         </div>
     );
 };

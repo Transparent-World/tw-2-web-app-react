@@ -8,10 +8,11 @@
 
 .ChannelLink {
     display: flex;
-    margin-top: 7px;
-    margin-left: 14px;
+    margin-top: 14px;
+    margin-left: 20px;
     
     background: var(--tg-theme-bg-color);
+
     width: 145px;
     height: 35px;
     border-radius: 13px;
