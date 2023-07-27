@@ -4,15 +4,16 @@ import Story from './Story/Story';
 
 const StoryBar = () => {
 
-    const handleClick = () => {
-        window.open('https://t.me/twrussia');
-    };
+    
     return (
         <div className={'StoryBar'}>
-            <Story onClick={handleClick}/>
-            <Story onClick={handleClick}/>
-            <Story onClick={handleClick}/>
-            <Story onClick={handleClick}/>
+            <Story/>
+            <Story/>
+            <Story/>
+            <Story/>
+            <Story/>
+            <Story/>
+            <Story/>
         </div>
     );
 };
