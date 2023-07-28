@@ -1,7 +1,7 @@
 
 .StoryBar{
     overflow-x: auto;
-
+    scrollbar-width: none;
     white-space: nowrap;
     width: 100%;
     display: flex;
