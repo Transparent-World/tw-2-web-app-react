@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './StoryBar.css'
 import Story from './Story/Story';
+import { fetchStories } from '../../http/storyAPI';
 
 const StoryBar = () => {
-
+    useEffect( () => {
+        console.log(fetchStories())
+    })
     
     return (
         <div className={'StoryBar'}>
