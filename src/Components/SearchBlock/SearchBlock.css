@@ -1,0 +1,56 @@
+
+.SearchBlock{
+    width: 100%;
+    height: 158px;
+    background: var(--tg-theme-bg-color);
+    background: black;
+    border-radius: 20px 20px 0px 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 415px;
+}
+
+.search_input{
+    width: 282px;
+    height: 36px;
+    font-size: 16px;
+    
+    margin-top: 20px;
+    margin-left: 17px;
+    background: #D9D9D9;
+    border-radius: 10px;
+    padding-left: 30px;
+}
+
+.location_variants{
+    margin-left: 17px;
+    margin-top: 14px;
+    font-family: Roboto;
+    font-size: 14px;
+    display: flex;
+
+    flex-direction: row;
+
+}
+
+.geolocation{
+    width: 108px;
+    height: 58px;
+    border-radius: 10px;
+    
+    background: #D9D9D9;
+    padding: 10px;
+
+}
+
+.on_map_select{
+    width: 108px;
+    height: 58px;
+    margin-left: 17px;
+    border-radius: 10px;
+    
+    background: #D9D9D9;
+    padding: 10px;
+
+}

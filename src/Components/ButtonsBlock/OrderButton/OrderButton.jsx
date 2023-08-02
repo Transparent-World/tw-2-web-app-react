@@ -1,9 +1,17 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import './OrderButton.css'
 
+
 const OrderButton = () => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/mappage");
+    }
+
     return (
-        <div className={'OrderButton'}>
+        <div className={'OrderButton'} onClick={handleClick}>
             <a className='order_button_text'>Создать запрос на съемку</a>
             <div className='order_icon'>
             <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">

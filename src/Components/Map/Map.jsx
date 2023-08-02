@@ -4,13 +4,13 @@ import { GoogleMap } from '@react-google-maps/api';
 //import {defaultTheme} from "./Theme";
 
 const containerStyle = {
-    width: '450px',
-    height: '200px'
+    width: '100%',
+    height: '430px'
 };
 
 const defaultOptions = {
-    panControl: true,
-    zoomControl: true,
+    panControl: false,
+    zoomControl: false,
     mapTypeControl: false,
     scaleControl: false,
     streetViewControl: false,
