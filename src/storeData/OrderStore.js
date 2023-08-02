@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 
 export default class OrderStore {
     constructor(){
-        this._orders [
+        this._orders = [
             {
                 id: 1,
                 userid: '736466798',
