@@ -10,7 +10,7 @@ export default class StoryStore {
             },
             {
                 id: 2,
-                img: 'https://poizonshop-webapp.vercel.app/_next/static/media/refer-friend.511a6d1e.png?w=256&q=75',
+                img: 'https://poizonshop-webapp.vercel.app/_next/static/media/invest.0ab5b975.png?w=256&q=75',
                 link: 'https://t.me/twrussia/402'
             },
             {
