@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import './SearchBlock.css'
+import { useSwipeable } from 'react-swipeable';
 
 const SearchBlock = () => {
+    const [flag, setFlag] = useState(false)
 
     const changeHeight = () => {
         let resizable = document.getElementById('SearchBlock');
@@ -10,8 +12,13 @@ const SearchBlock = () => {
         resizable.style.marginTop = '20vh';
         console.log('resized')
     }
+
+    const handlers = useSwipeable({
+        onSwipedDown: (eventData) => console.log("User Swiped!"),
+      });
+
     return (
-        <div className={'SearchBlock'} id = 'SearchBlock'>
+        <div className={'SearchBlock'} id = 'SearchBlock' {...handlers}>
             <div  className='search'>
                 <svg className='icon' xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
                     <path d="M15.775 2C23.3875 2 29.55 8.1625 29.55 15.775C29.55 23.3875 23.3875 29.55 15.775 29.55C8.1625 29.55 2 23.3875 2 15.775C2 10.41 5.0595 5.77 9.54 3.4935" stroke="#292D32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
