@@ -5,7 +5,7 @@ import { GoogleMap } from '@react-google-maps/api';
 
 const containerStyle = {
     width: '100%',
-    height: '450px',
+    height: '65vh',
 };
 
 const defaultOptions = {
@@ -38,7 +38,7 @@ const Map = () => {
     }, [])
     
     return (
-        <div>
+        <div className='Map'>
             <GoogleMap
             mapContainerStyle={containerStyle}
             center={{lat:43, lng: -80}}
