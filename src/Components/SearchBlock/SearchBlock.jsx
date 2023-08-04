@@ -44,13 +44,13 @@ const SearchBlock = () => {
         onTouchStartOrOnMouseDown: (({ event }) => event.preventDefault()),
         touchEventOptions: { passive: false },
         preventScrollOnSwipe: true,
-        trackMouse: false
+        trackMouse: true
       });
 
 
 
     return (
-        <div {...handlers} className={'SearchBlock'} id = 'SearchBlock'>
+        <div  active className={'SearchBlock'} id = 'SearchBlock'>
             <div  className='search'>
                 <svg className='icon' xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
                     <path d="M15.775 2C23.3875 2 29.55 8.1625 29.55 15.775C29.55 23.3875 23.3875 29.55 15.775 29.55C8.1625 29.55 2 23.3875 2 15.775C2 10.41 5.0595 5.77 9.54 3.4935" stroke="#292D32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
@@ -58,7 +58,7 @@ const SearchBlock = () => {
                 </svg>
                 <input onClick={changeHeight} autofocus className='search_input' placeholder="Введите адрес" />
             </div>
-            <div className='location_variants'>
+            <div {...handlers} className='location_variants'>
                 <div className='geolocation' id='geolocation'>
                     Запросить гелокацию
                 </div>
