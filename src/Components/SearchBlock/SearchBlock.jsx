@@ -7,9 +7,11 @@ const SearchBlock = () => {
 
     const changeHeight = () => {
         let resizable = document.getElementById('SearchBlock');
+        let vars = document.getElementById('location_variants');
         if (!flag){
             resizable.style.height = '80vh';
             resizable.style.marginTop = '20vh';
+            vars.style.display = 'none';
         } 
         else{
             resizable.style.height = '40vh';
@@ -20,24 +22,6 @@ const SearchBlock = () => {
         console.log('resized')
     }
 
-    const handleSwiped = (eventData) => {
-        if (eventData.dir === pattern[pIdx]) {
-          // user successfully got to the end of the pattern!
-          if (pIdx + 1 === pattern.length) {
-            setPIdx(pattern.length);
-            slide(NEXT);
-            setTimeout(() => {
-              setPIdx(0);
-            }, 50);
-          } else {
-            // user is cont. with the pattern
-            setPIdx((i) => (i += 1));
-          }
-        } else {
-          // user got the next pattern step wrong, reset pattern
-          setPIdx(0);
-        }
-      };
 
     const handlers = useSwipeable({
         onSwiped: changeHeight,
@@ -58,7 +42,7 @@ const SearchBlock = () => {
                 </svg>
                 <input onClick={changeHeight} autofocus className='search_input' placeholder="Введите адрес" />
             </div>
-            <div {...handlers} className='location_variants'>
+            <div {...handlers} className='location_variants' id='location_variants'>
                 <div className='geolocation' id='geolocation'>
                     Запросить гелокацию
                 </div>
