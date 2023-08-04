@@ -55,12 +55,19 @@ const SearchBlock = () => {
     const changeHeight = () => {
         let resizable = document.getElementById('SearchBlock');
         let vars = document.getElementById('location_variants');
-        if (!flag) {
+        if (flag == false) {
             resizable.style.height = '80vh';
             resizable.style.marginTop = '20vh';
             vars.style.display = 'none';
         }
         setFlag(!flag)
+
+        setIsOpen(true);
+        inputRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "center"
+          });
 
         console.log('resized')
     }
@@ -105,6 +112,7 @@ const SearchBlock = () => {
                     onChange={(e) => onChangeCity(e, 0)}
                     value={address}
                     onClick={changeHeight}
+                    
                     autofocus
                     className='search_input'
                     placeholder="Введите адрес" />
