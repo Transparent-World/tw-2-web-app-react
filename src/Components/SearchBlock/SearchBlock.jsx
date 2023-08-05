@@ -56,9 +56,11 @@ const SearchBlock = () => {
         let resizable = document.getElementById('SearchBlock');
         let vars = document.getElementById('location_variants');
         if (flag == false) {
-            resizable.style.height = '80vh';
-            resizable.style.marginTop = '20vh';
+            resizable.style.height = '600px';
+            resizable.style.marginTop = '80px';
+
             vars.style.display = 'none';
+            //resizable.style.transition = 'all 0s linear;'
         }
         setFlag(!flag)
 
