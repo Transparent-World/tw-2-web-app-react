@@ -34,7 +34,7 @@ const SearchBlock = () => {
         } else if (status == 0){
             navigate("/mainpage");
             tg.BackButton.hide()
-        } else if (status == 0){
+        } else if (status == 2){
             setFlag(false)
             setStatus(1)
             let resizable = document.getElementById('SearchBlock');
