@@ -22,6 +22,7 @@ const SearchBlock = () => {
     }, [])
 
     const onBack = useCallback( () =>{
+        console.log(status)
         if (status == 1){
             let resizable = document.getElementById('SearchBlock');
             let vars = document.getElementById('location_variants');
