@@ -46,7 +46,7 @@ const SearchBlock = () => {
             search.style.display = 'flex';
 
         }
-    },[])
+    },[status, flag])
 
     const onChangeCity = (e, index) => {
         var address_text = '';
