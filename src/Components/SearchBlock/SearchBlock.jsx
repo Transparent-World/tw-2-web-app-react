@@ -10,7 +10,8 @@ const SearchBlock = () => {
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp;
     const [flag, setFlag] = useState(false)
-    const [status, setStatus] = useState(0)
+    const [status, setStatus] = useState('main')
+    let stat = 0
     const inputRef = useRef(null);
     const [address, setAddress] = useState('');
     const [articles, setArticles] = useState([]);
@@ -19,11 +20,11 @@ const SearchBlock = () => {
     useEffect(() => {
         tg.BackButton.show()
         tg.onEvent('backButtonClicked', onBack)
-    }, [])
+    }, [status])
 
     const onBack = useCallback( () =>{
-        console.log(status)
-        if (status == 1){
+        console.log(stat)
+        if (stat == 1){
             let resizable = document.getElementById('SearchBlock');
             let vars = document.getElementById('location_variants');
 
@@ -31,13 +32,17 @@ const SearchBlock = () => {
             resizable.style.height = '40vh';
             resizable.style.marginTop = '60vh';
             vars.style.display = 'flex';
-            setStatus(0)
-        } else if (status == 0){
+            setStatus('main')
+            stat = 0
+        } else if (stat == 0){
+            setStatus('zero')
+            stat = -1
             navigate("/mainpage");
             tg.BackButton.hide()
-        } else if (status == 2){
+        } else if (stat == 2){
             setFlag(false)
-            setStatus(1)
+            setStatus('search')
+            stat = 1
             let resizable = document.getElementById('SearchBlock');
             let search = document.getElementById('search');
             resizable.style.height = '80vh';
@@ -99,10 +104,12 @@ const SearchBlock = () => {
             //resizable.style.transition = 'all 0s linear;'
         }
         setFlag(!flag)
-        setStatus(1)
+        setStatus('search')
+        stat = 1
         setIsOpen(true);
 
         console.log(status)
+        console.log(stat)
         console.log('resized')
     }
 
@@ -139,11 +146,13 @@ const SearchBlock = () => {
         onChangeCity(e, 1);
         setIsOpen(!isOpen);
         setStatus(2)
+        stat = 2
         setFlag(true)
         resizable.style.height = '40vh';
         resizable.style.marginTop = '60vh';
         input.style.display = 'none';
         console.log(status)
+        console.log(stat)
     }
 
     return (
