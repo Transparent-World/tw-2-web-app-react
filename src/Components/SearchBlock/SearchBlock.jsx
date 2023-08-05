@@ -63,11 +63,7 @@ const SearchBlock = () => {
         setFlag(!flag)
 
         setIsOpen(true);
-        inputRef.current.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-            inline: "center"
-          });
+
 
         console.log('resized')
     }
