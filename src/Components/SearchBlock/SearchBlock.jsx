@@ -102,7 +102,7 @@ const SearchBlock = () => {
         setStatus(1)
         setIsOpen(true);
 
-
+        console.log(status)
         console.log('resized')
     }
 
@@ -143,6 +143,7 @@ const SearchBlock = () => {
         resizable.style.height = '40vh';
         resizable.style.marginTop = '60vh';
         input.style.display = 'none';
+        console.log(status)
     }
 
     return (
