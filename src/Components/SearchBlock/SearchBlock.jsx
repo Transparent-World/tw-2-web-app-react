@@ -125,15 +125,17 @@ const SearchBlock = () => {
             <div className='suggestions'>
                 <ul className={"autoComplete"}>
                     {isOpen
-                        ? Object.keys(articles).map(article => {
+                        ? Object.keys(articles).slice(0, 6).map(article => {
                             return (
                                 <li className={"autoCompleteItem"}
                                     onClick={(e) => onClickAutoCompleteItem(e, articles[article]['data'])}>
                                     <a className='value'>
-                                        {articles[article]['value']}
+                                        {
+                                        articles[article]['value'].replace(articles[article]['data']['region_with_type']+',', '')
+                                        }
                                     </a>
                                     <a className='city'>
-                                        {articles[article]['data']['city']}
+                                        {articles[article]['data']['city']}, {articles[article]['data']['region_with_type']}
                                     </a>
                                 </li>
                             );
