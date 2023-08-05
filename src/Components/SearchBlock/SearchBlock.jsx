@@ -97,7 +97,15 @@ const SearchBlock = () => {
         trackMouse: true
     });
 
-
+    const onClickAutoCompleteItem = (e,article) =>{
+        let resizable = document.getElementById('SearchBlock');
+        let input = document.getElementById('search');
+        onChangeCity(e, 1);
+        setIsOpen(!isOpen);
+        resizable.style.height = '40vh';
+        resizable.style.marginTop = '60vh';
+        input.style.display = 'none';
+    }
 
     return (
         <div active className={'SearchBlock'} id='SearchBlock'>
@@ -112,6 +120,7 @@ const SearchBlock = () => {
                     onClick={changeHeight}
                     autofocus
                     className='search_input'
+                    id = 'search_input'
                     placeholder="Введите адрес" />
             </div>
             <div {...handlers} className='location_variants' id='location_variants'>
