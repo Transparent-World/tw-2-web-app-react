@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './SearchBlock.css'
 import { useSwipeable, SwipeEventData } from 'react-swipeable';
 import { useNavigate } from "react-router-dom";
+import { usePosition } from './usePosition';
 
 const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "14ff958eb194fcb4809c2f0661a7c8a2549d4cd1";
@@ -16,8 +17,10 @@ const SearchBlock = () => {
     const [address, setAddress] = useState('');
     const [articles, setArticles] = useState([]);
     const [isOpen, setIsOpen] = useState(true);
+    const location = usePosition();
 
     useEffect(() => {
+        
         tg.BackButton.show()
         tg.onEvent('backButtonClicked', onBack)
     }, [status])
@@ -176,7 +179,9 @@ const SearchBlock = () => {
                     Запросить гелокацию
                 </div>
                 <div className='on_map_select'>
-                    Выбрать на карте
+                    {
+                        location.loaded ? JSON.stringify(location): "Выбрать на карте"
+                    }
                 </div>
             </div>
             <div className='suggestions'>
