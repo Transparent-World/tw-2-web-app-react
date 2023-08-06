@@ -15,19 +15,22 @@ const SearchBlock = () => {
     let stat = 0
     const inputRef = useRef(null);
     const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [value, setValue] = useState('');
+    const [radius, setRadius] = useState(500)
     const [articles, setArticles] = useState([]);
     const [isOpen, setIsOpen] = useState(true);
     const location = usePosition();
 
     useEffect(() => {
-        
+
         tg.BackButton.show()
         tg.onEvent('backButtonClicked', onBack)
     }, [status])
 
-    const onBack = useCallback( () =>{
+    const onBack = useCallback(() => {
         console.log(stat)
-        if (stat == 1){
+        if (stat == 1) {
             let resizable = document.getElementById('SearchBlock');
             let vars = document.getElementById('location_variants');
 
@@ -37,12 +40,12 @@ const SearchBlock = () => {
             vars.style.display = 'flex';
             setStatus('main')
             stat = 0
-        } else if (stat == 0){
+        } else if (stat == 0) {
             setStatus('zero')
             stat = -1
             navigate("/mainpage");
             tg.BackButton.hide()
-        } else if (stat == 2){
+        } else if (stat == 2) {
             setFlag(false)
             setStatus('search')
             stat = 1
@@ -54,7 +57,7 @@ const SearchBlock = () => {
             search.style.display = 'flex';
 
         }
-    },[stat, status, flag])
+    }, [stat, status, flag])
 
     const onChangeCity = (e, index) => {
         var address_text = '';
@@ -143,9 +146,12 @@ const SearchBlock = () => {
         trackMouse: true
     });
 
-    const onClickAutoCompleteItem = (e,article) =>{
+    const onClickAutoCompleteItem = (e, article) => {
         let resizable = document.getElementById('SearchBlock');
         let input = document.getElementById('search');
+        let result = document.getElementById('result');
+        setCity( article['data']['city'] +", "+ article['data']['region_with_type'])
+        setValue( article['value'].replace(article['data']['region_with_type'] + ',', ''))
         onChangeCity(e, 1);
         setIsOpen(!isOpen);
         setStatus(2)
@@ -154,13 +160,15 @@ const SearchBlock = () => {
         resizable.style.height = '40vh';
         resizable.style.marginTop = '60vh';
         input.style.display = 'none';
+        result.style.display = 'flex'
         console.log(status)
         console.log(stat)
+        tg.MainButton.show()
     }
 
     return (
         <div active className={'SearchBlock'} id='SearchBlock'>
-            <div className='search' id = 'search'>
+            <div className='search' id='search'>
                 <svg className='icon' xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
                     <path d="M15.775 2C23.3875 2 29.55 8.1625 29.55 15.775C29.55 23.3875 23.3875 29.55 15.775 29.55C8.1625 29.55 2 23.3875 2 15.775C2 10.41 5.0595 5.77 9.54 3.4935" stroke="#292D32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M31 30.9999L28.1 28.0999" stroke="#292D32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
@@ -171,7 +179,7 @@ const SearchBlock = () => {
                     onClick={changeHeight}
                     autofocus
                     className='search_input'
-                    id = 'search_input'
+                    id='search_input'
                     placeholder="Введите адрес" />
             </div>
             <div {...handlers} className='location_variants' id='location_variants'>
@@ -180,7 +188,7 @@ const SearchBlock = () => {
                 </div>
                 <div className='on_map_select'>
                     {
-                        location.loaded ? JSON.stringify(location): "Выбрать на карте"
+                        location.loaded ? JSON.stringify(location) : "Выбрать на карте"
                     }
                 </div>
             </div>
@@ -190,10 +198,10 @@ const SearchBlock = () => {
                         ? Object.keys(articles).slice(0, 6).map(article => {
                             return (
                                 <li className={"autoCompleteItem"}
-                                    onClick={(e) => onClickAutoCompleteItem(e, articles[article]['data'])}>
+                                    onClick={(e) => onClickAutoCompleteItem(e, articles[article])}>
                                     <a className='value'>
                                         {
-                                        articles[article]['value'].replace(articles[article]['data']['region_with_type']+',', '')
+                                            articles[article]['value'].replace(articles[article]['data']['region_with_type'] + ',', '')
                                         }
                                     </a>
                                     <a className='city'>
@@ -205,6 +213,27 @@ const SearchBlock = () => {
                         : null
                     }
                 </ul>
+            </div>
+            <div className='result' id='result'>
+                <div className='locate'>
+                    <a className='locate_text'>Место на карте</a>
+                    <div className='autoCompleteItem place'>
+                        <a className='value'>
+                            {value}
+                        </a>
+                        <a className='city'>
+                            {city}
+                        </a>
+                    </div>
+                </div>
+                <div className='radius'>
+                    <a className='locate_text'>Радиус области снимка</a>
+                    <div className='autoCompleteItem place'>
+                        <a className='radius_value'>
+                            {radius}
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     );
