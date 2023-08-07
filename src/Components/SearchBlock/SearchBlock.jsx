@@ -187,9 +187,7 @@ const SearchBlock = () => {
                     Запросить гелокацию
                 </div>
                 <div className='on_map_select'>
-                    {
-                        location.loaded ? JSON.stringify(location) : "Выбрать на карте"
-                    }
+                        "Выбрать на карте"
                 </div>
             </div>
             <div className='suggestions'>

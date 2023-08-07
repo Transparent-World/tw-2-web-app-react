@@ -10,3 +10,11 @@
     left: 0;
     
 }
+
+.current_location_icon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 90%;
+    margin-top: 58vh;
+}
