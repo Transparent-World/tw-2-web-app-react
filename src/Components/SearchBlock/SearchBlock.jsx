@@ -38,13 +38,13 @@ const SearchBlock = () => {
         tg.onEvent('mainButtonClicked', sendOrder)
     }, [radius])
 
-    const sendOrder = useCallback(() => {
+    const sendOrder = () => {
         console.log(tg.ID)
         console.log(tg.name)
         console.log(tg.username)
         console.log(center)
         createOrder(tg.ID, center.lng, center.lat, address, radius)
-    }, [address, center,tg ,radius])
+    }
 
     const onBack = useCallback(() => {
         console.log(stat)
