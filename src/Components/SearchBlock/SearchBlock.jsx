@@ -3,6 +3,7 @@ import './SearchBlock.css'
 import { useSwipeable, SwipeEventData } from 'react-swipeable';
 import { useNavigate } from "react-router-dom";
 import { usePosition } from './usePosition';
+import { createOrder } from '../../http/orderApi';
 
 const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "14ff958eb194fcb4809c2f0661a7c8a2549d4cd1";
@@ -13,23 +14,33 @@ const SearchBlock = () => {
     const [flag, setFlag] = useState(false)
     const [status, setStatus] = useState('main')
     let stat = 0
-    const inputRef = useRef(null);
+    const [center, setCenter] = useState({
+        lat: 23.45,
+        lng: 23.45
+    })
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [value, setValue] = useState('');
     const [radius, setRadius] = useState("")
     const [articles, setArticles] = useState([]);
     const [isOpen, setIsOpen] = useState(true);
-    const location = usePosition();
 
     useEffect(() => {
         tg.BackButton.show()
         if (radius != ""){
             tg.MainButton.show()
+        }else{
+            tg.MainButton.hide()
         }
 
+        //tg.onEvent('mainButtonClicked', )
         tg.onEvent('backButtonClicked', onBack)
+        tg.onEvent('mainButtonClicked', sendOrder)
     }, [radius])
+
+    const sendOrder = useCallback((center, address, radius) => {
+        createOrder(tg.ID, center.lng, center.lat, address, radius)
+    })
 
     const onBack = useCallback(() => {
         console.log(stat)
@@ -72,7 +83,7 @@ const SearchBlock = () => {
             address_text = e.target.value
         }
         //end if
-        setAddress(address_text);
+        
 
         const promise = suggest(address_text);
         promise
@@ -155,6 +166,11 @@ const SearchBlock = () => {
         let result = document.getElementById('result');
         setCity(article['data']['city'] + ", " + article['data']['region_with_type'])
         setValue(article['value'].replace(article['data']['region_with_type'] + ',', ''))
+        setAddress(article['value']);
+        setCenter({
+            lat: parseFloat(article['data']['geo_lat']),
+            lng: parseFloat(article['data']['geo_lon'])
+        })
         onChangeCity(e, 1);
         setIsOpen(!isOpen);
         setStatus(2)

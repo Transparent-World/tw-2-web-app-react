@@ -16,7 +16,7 @@ const MapPage = () => {
         lat: 23.45,
         lng: 23.45,
     });
-    const location = usePosition();
+    //const location = usePosition();
     
 
     const { isLoaded } = useJsApiLoader({
@@ -24,8 +24,7 @@ const MapPage = () => {
         googleMapsApiKey: "AIzaSyD8jQRBkxYYsQb6FWMPNjgSQW1lVIEj1EA"
     })
 
-    const onPlaceSelect = useCallback( () => {
-
+    const onPlaceSelect = ( () => {
         console.log('click')
         if (location.loaded){
             console.log(JSON.stringify(location))
