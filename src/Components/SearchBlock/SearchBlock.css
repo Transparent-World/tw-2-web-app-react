@@ -132,10 +132,14 @@
     width: 100%;
     min-height: 50px; 
     background: var(--tg-theme-secondary-bg-color);
-    color:var(--tg-theme-text-color);
+    color: var(--tg-theme-hint-color);
+    font-size: 15px;
+    font-weight: 500;
     flex-direction: column;
+    margin-top: 5px;
     padding-top: 15px;
-    border: none;
+    border-radius: 5px;
+    border-bottom: 1px solid #000;
     padding-left: 5%;
 
     -moz-appearance: none;
