@@ -17,16 +17,18 @@ const SearchBlock = () => {
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [value, setValue] = useState('');
-    const [radius, setRadius] = useState(500)
+    const [radius, setRadius] = useState("")
     const [articles, setArticles] = useState([]);
     const [isOpen, setIsOpen] = useState(true);
     const location = usePosition();
 
     useEffect(() => {
-
-        tg.BackButton.show()
+        if (radius != ""){
+            tg.BackButton.show()
+        }
+        
         tg.onEvent('backButtonClicked', onBack)
-    }, [status])
+    }, [radius])
 
     const onBack = useCallback(() => {
         console.log(stat)
@@ -225,12 +227,14 @@ const SearchBlock = () => {
                 </div>
                 <div className='radius'>
                     <a className='locate_text'>Радиус области снимка</a>
-                    <select name="choice" className='choice'>
+                    <select value={radius} 
+                    onChange={e => setRadius(e.target.value)}
+                    className='choice'>
                         <option value="" selected>Укажите радиус снимка</option>
-                        <option value="first">50 метров</option>
-                        <option value="second" >100 метров</option>
-                        <option value="third">200 метров</option>
-                        <option value="fourth">500 метров</option>
+                        <option value="50">50 метров</option>
+                        <option value="100" >100 метров</option>
+                        <option value="200">200 метров</option>
+                        <option value="500">500 метров</option>
                     </select>
                 </div>
             </div>
