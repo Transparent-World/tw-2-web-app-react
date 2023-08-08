@@ -14,7 +14,7 @@
 .current_location_icon{
     position: absolute;
     top: 0;
-    left: 0;
-    margin-left: 90%;
-    margin-top: 55vh;
+    right: 0;
+    margin-right: 50px;
+    margin-top: 52vh;
 }

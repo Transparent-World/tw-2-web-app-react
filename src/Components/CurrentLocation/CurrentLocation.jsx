@@ -14,9 +14,9 @@ const CurrentLocation = () => {
 
     return (
         <div className='CurrentLocation'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
-                <circle cx="19" cy="19" r="19" fill="#D9D9D9" />
-                <path d="M18.124 20.2078L18.0864 19.7834L17.6615 19.7531L9.56612 19.1758L26.843 11.1595L18.8562 28.4845L18.124 20.2078Z" fill="#1D2733" stroke="#292D32" />
+            <svg   xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none">
+                <circle className='circle' cx="22.5" cy="22.5" r="22.5" fill="#D9D9D9" />
+                <path className='arrow' d="M21.3709 23.9383L21.3333 23.514L20.9084 23.4837L10.9661 22.7747L31.9764 13.0261L22.2685 34.0845L21.3709 23.9383Z" fill="#1D2733" stroke="#292D32" />
             </svg>
         </div>
     );
