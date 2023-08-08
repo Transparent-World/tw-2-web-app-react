@@ -126,3 +126,21 @@
     margin-left: 10%;
     width:80%;
 }
+
+.choice{
+    display: flex;
+    width: 100%;
+    min-height: 50px; 
+    background: var(--tg-theme-secondary-bg-color);
+    color:var(--tg-theme-text-color);
+    flex-direction: column;
+    padding-top: 15px;
+    border: none;
+    padding-left: 5%;
+
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    outline: none;
+}

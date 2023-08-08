@@ -225,15 +225,12 @@ const SearchBlock = () => {
                 </div>
                 <div className='radius'>
                     <a className='locate_text'>Радиус области снимка</a>
-                    <div className='autoCompleteItem place'>
-                        <a className='radius_value'>
-                            {radius}
-                        </a>
-                    </div>
-                    <select name="choice">
-                        <option value="first">First Value</option>
-                        <option value="second" selected>Second Value</option>
-                        <option value="third">Third Value</option>
+                    <select name="choice" className='choice'>
+                        <option value="" selected>Укажите радиус снимка</option>
+                        <option value="first">50 метров</option>
+                        <option value="second" >100 метров</option>
+                        <option value="third">200 метров</option>
+                        <option value="fourth">500 метров</option>
                     </select>
                 </div>
             </div>
