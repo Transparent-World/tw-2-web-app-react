@@ -1,9 +1,9 @@
 
-.CurrentLocation:hover .circle{
+.CurrentLocation:active .circle{
     fill: #1D2733;
 }
 
-.CurrentLocation:hover .arrow{
+.CurrentLocation:active .arrow{
     fill: #D9D9D9;
 }
 

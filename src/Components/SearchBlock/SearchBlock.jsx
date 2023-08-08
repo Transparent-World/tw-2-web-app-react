@@ -177,7 +177,6 @@ const SearchBlock = () => {
                     onChange={(e) => onChangeCity(e, 0)}
                     value={address}
                     onClick={changeHeight}
-                    autofocus
                     className='search_input'
                     id='search_input'
                     placeholder="Введите адрес" />
