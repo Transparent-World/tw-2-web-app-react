@@ -44,7 +44,7 @@ const SearchBlock = () => {
     const sendOrder =useCallback( () => {
         console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
         createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
-    },[center, address, radius])
+    })
 
     const onBack = useCallback(() => {
         console.log(stat)
@@ -87,7 +87,7 @@ const SearchBlock = () => {
             address_text = e.target.value
         }
         //end if
-        
+        setAddress(address_text);
 
         const promise = suggest(address_text);
         promise
