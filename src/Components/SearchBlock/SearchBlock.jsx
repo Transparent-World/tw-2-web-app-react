@@ -36,15 +36,15 @@ const SearchBlock = () => {
         //tg.onEvent('mainButtonClicked', )
         tg.onEvent('backButtonClicked', onBack)
         tg.onEvent('mainButtonClicked', sendOrder)
-    }, [radius])
+        return () => {
+            tg.offEvent('mainButtonClicked', sendOrder)
+        }
+    }, [radius, sendOrder])
 
-    const sendOrder = () => {
-        console.log(tg.ID)
-        console.log(tg.name)
-        console.log(tg.username)
-        console.log(center)
-        createOrder(tg.ID, center.lng, center.lat, address, radius)
-    }
+    const sendOrder =useCallback( () => {
+        console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
+        createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
+    },[center, address, radius])
 
     const onBack = useCallback(() => {
         console.log(stat)
