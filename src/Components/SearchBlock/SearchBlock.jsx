@@ -150,8 +150,8 @@ const SearchBlock = () => {
         let resizable = document.getElementById('SearchBlock');
         let input = document.getElementById('search');
         let result = document.getElementById('result');
-        setCity( article['data']['city'] +", "+ article['data']['region_with_type'])
-        setValue( article['value'].replace(article['data']['region_with_type'] + ',', ''))
+        setCity(article['data']['city'] + ", " + article['data']['region_with_type'])
+        setValue(article['value'].replace(article['data']['region_with_type'] + ',', ''))
         onChangeCity(e, 1);
         setIsOpen(!isOpen);
         setStatus(2)
@@ -186,7 +186,7 @@ const SearchBlock = () => {
                     Запросить гелокацию
                 </div>
                 <div className='on_map_select'>
-                        "Выбрать на карте"
+                    "Выбрать на карте"
                 </div>
             </div>
             <div className='suggestions'>
@@ -230,6 +230,11 @@ const SearchBlock = () => {
                             {radius}
                         </a>
                     </div>
+                    <select name="choice">
+                        <option value="first">First Value</option>
+                        <option value="second" selected>Second Value</option>
+                        <option value="third">Third Value</option>
+                    </select>
                 </div>
             </div>
         </div>
