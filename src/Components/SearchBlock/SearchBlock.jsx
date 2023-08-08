@@ -23,10 +23,11 @@ const SearchBlock = () => {
     const location = usePosition();
 
     useEffect(() => {
+        tg.BackButton.show()
         if (radius != ""){
-            tg.BackButton.show()
+            tg.MainButton.show()
         }
-        
+
         tg.onEvent('backButtonClicked', onBack)
     }, [radius])
 
@@ -165,7 +166,7 @@ const SearchBlock = () => {
         result.style.display = 'flex'
         console.log(status)
         console.log(stat)
-        tg.MainButton.show()
+
     }
 
     return (
