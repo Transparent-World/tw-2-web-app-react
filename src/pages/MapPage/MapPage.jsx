@@ -24,7 +24,7 @@ const MapPage = () => {
         googleMapsApiKey: "AIzaSyD8jQRBkxYYsQb6FWMPNjgSQW1lVIEj1EA"
     })
 
-    const onPlaceSelect = ( () => {
+    const onPlaceSelect = useCallback(() => {
         console.log('click')
         if (location.loaded){
             console.log(JSON.stringify(location))
@@ -35,7 +35,7 @@ const MapPage = () => {
 
     return (
         <div className='MapPage'>
-            {isLoaded ? <Map className={'map'} center={center}/> : <h2>Loading</h2>}
+            {<Map className={'map'} center={center}/>}
             <div className='link'>
             <ChannelLink />
             </div>

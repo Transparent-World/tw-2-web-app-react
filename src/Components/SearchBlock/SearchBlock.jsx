@@ -25,6 +25,12 @@ const SearchBlock = () => {
     const [articles, setArticles] = useState([]);
     const [isOpen, setIsOpen] = useState(true);
 
+
+    const sendOrder =useCallback( () => {
+        console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
+        createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
+    })
+    
     useEffect(() => {
         tg.BackButton.show()
         if (radius != ""){
@@ -41,10 +47,7 @@ const SearchBlock = () => {
         }
     }, [radius, sendOrder])
 
-    const sendOrder =useCallback( () => {
-        console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
-        createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
-    })
+
 
     const onBack = useCallback(() => {
         console.log(stat)
@@ -169,8 +172,8 @@ const SearchBlock = () => {
         let input = document.getElementById('search');
         let result = document.getElementById('result');
         setCity(article['data']['city'] + ", " + article['data']['region_with_type'])
-        setValue(article['value'].replace(article['data']['region_with_type'] + ',', ''))
         setAddress(article['value']);
+        setValue(article['value'].replace(article['data']['region_with_type'] + ',', ''))
         setCenter({
             lat: parseFloat(article['data']['geo_lat']),
             lng: parseFloat(article['data']['geo_lon'])
