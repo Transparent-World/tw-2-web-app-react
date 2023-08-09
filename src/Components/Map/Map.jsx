@@ -6,27 +6,6 @@ import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ';
 
-const containerStyle = {
-    width: '100%',
-    height: '65vh',
-};
-
-
-const defaultOptions = {
-    panControl: false,
-    zoomControl: false,
-    mapTypeControl: false,
-    scaleControl: false,
-    streetViewControl: false,
-    rotateControl: false,
-    clickableIcons: false,
-    keyboardShortcuts: false,
-    scrollwheel: false,
-    disableDoubleClickZoom: false,
-    fullscreenControl: false,
-    //styles: defaultTheme,
-
-}
 
 const Map = () => {
     const mapRef = React.useRef(undefined)
