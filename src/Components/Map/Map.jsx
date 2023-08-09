@@ -1,28 +1,40 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState, useCallback} from 'react';
 import './Map.css';
-import { GoogleMap } from '@react-google-maps/api';
+import CurrentLocation from '../CurrentLocation/CurrentLocation';
 import mapboxgl from 'mapbox-gl';
-//import {defaultTheme} from "./Theme";
+import { usePosition } from '../../Components/SearchBlock/usePosition';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ';
 
 
 const Map = () => {
-    const mapRef = React.useRef(undefined)
     const mapContainer = React.useRef(null);
+    const [mapObject, setMap] = useState();
     const map = React.useRef(null);
+    const [center, setCenter] = useState({
+        lat: 55.45,
+        lng: 37.36
+    })
     const [lng, setLng] = useState(-70.9);
     const [lat, setLat] = useState(42.35);
     const [zoom, setZoom] = useState(9);
 
+    
+    const location = usePosition();
 
-    const onLoad = React.useCallback(function callback(map) {
-        mapRef.current = map;
-    }, [])
 
-    const onUnmount = React.useCallback(function callback(map) {
-        mapRef.current = undefined;
-    }, [])
+    const onPlaceSelect = useCallback(() => {
+        console.log('click')
+        if (location.loaded){
+            console.log(JSON.stringify(location))
+            setCenter(location)
+            map.current.flyTo({
+                center: [location.coordinates.lng, location.coordinates.lat]
+                });
+        }
+        
+
+    }, [center,location])
 
     useEffect(() => {
         if (map.current) return; // initialize map only once
@@ -32,7 +44,8 @@ const Map = () => {
             center: [lng, lat],
             zoom: zoom
         });
-    });
+    })
+
 
     return (
         <div className='Map'>
@@ -47,6 +60,9 @@ const Map = () => {
             </GoogleMap>
         */}
             <div ref={mapContainer} className="map-container" />
+            <div className='current_location_icon' onClick={onPlaceSelect}>
+                <CurrentLocation/>
+            </div>
         </div>
     );
 };
