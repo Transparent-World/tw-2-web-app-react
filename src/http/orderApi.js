@@ -7,6 +7,6 @@ export const createOrder = async (userid, lon, lat, address, radius) => {
 }
 
 export const fetchOrders = async (userid) => {
-    const {data} = await $host.get('api/order/get', userid)
+    const {data} = await $host.get('api/order/get', { params: { userid: userid } })
     return data
 }
