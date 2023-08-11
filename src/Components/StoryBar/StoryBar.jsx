@@ -12,6 +12,9 @@ const StoryBar = observer(  () => {
         console.log(fetchStories())
     })
     */
+   useEffect(() => {
+    fetchStories().then(data => stories.setStories(data))
+   }, [])
     
     return (
         <div className={'StoryBar'}>

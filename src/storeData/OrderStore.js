@@ -35,11 +35,11 @@ export default class OrderStore {
     }
 
 
-    setStories(orders) {
+    setOrders(orders) {
         this._orders = orders
     }
 
-    get stories() {
+    get orders() {
         return this._orders
     }
 }

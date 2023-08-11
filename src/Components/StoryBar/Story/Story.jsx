@@ -7,7 +7,7 @@ const Story = ({img, link}) => {
 
     const styles = {
         paperContainer: {
-            backgroundImage: `url(${img})`,
+            backgroundImage:  `url(${process.env.REACT_APP_API_URL + img})`,
             backgroundSize: 'cover'
         }
     };
