@@ -1,35 +1,74 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import './MapPage.css';
-import Map from '../../Components/Map/Map';
 import SearchBlock from '../../Components/SearchBlock/SearchBlock';
-import {useJsApiLoader} from "@react-google-maps/api";
 import ChannelLink from '../../Components/ChannelLink/ChannelLink';
 import CurrentLocation from '../../Components/CurrentLocation/CurrentLocation';
+import { usePosition } from '../../Components/SearchBlock/usePosition';
+import mapboxgl from 'mapbox-gl';
 
-
+mapboxgl.accessToken = 'pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ';
 
 
 const MapPage = () => {
-    const [lat,setLat] = useState(0.0);
-    const [lon,setLon] = useState(0.0);
+    const mapContainer = React.useRef(null);
+    const map = React.useRef(null);
+    const [center, setCenter] = useState({
+        lat: 55.45,
+        lng: 37.36
+    })
+    const [zoom, setZoom] = useState(9);
 
-    
+    const location = usePosition();
 
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyD8jQRBkxYYsQb6FWMPNjgSQW1lVIEj1EA"
+    const onGeoLocationPlaceSelect = useCallback(() => {
+        console.log('click')
+        if (location.loaded) {
+            console.log(JSON.stringify(location))
+            map.current.flyTo({
+                center: [location.coordinates.lng, location.coordinates.lat]
+            });
+        }
+
+
+    }, [location])
+
+    const onAutocompleteItemPlaceSelect = useCallback((coordinates) => {
+        console.log('click')
+        if (coordinates) {
+            console.log(JSON.stringify(coordinates))
+            map.current.flyTo({
+                center: coordinates
+            });
+        }
+
+
+    }, [location])
+
+    useEffect(() => {
+        if (map.current) return; // initialize map only once
+        map.current = new mapboxgl.Map({
+            container: mapContainer.current,
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [center.lng, center.lat],
+            zoom: zoom
+        });
     })
 
     
 
     return (
         <div className='MapPage'>
-            <Map className={'map'}/>
+            <div className='Map'>
+            <div ref={mapContainer} className="map-container" />
+            <div className='current_location_icon' onClick={onGeoLocationPlaceSelect}>
+                <CurrentLocation />
+            </div>
+        </div>
             <div className='link'>
             <ChannelLink />
             </div>
             
-            <SearchBlock/>
+            <SearchBlock onSelect={onAutocompleteItemPlaceSelect}/>
         </div>
     );
 };

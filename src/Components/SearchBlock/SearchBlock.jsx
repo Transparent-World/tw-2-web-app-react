@@ -4,11 +4,12 @@ import { useSwipeable, SwipeEventData } from 'react-swipeable';
 import { useNavigate } from "react-router-dom";
 import { usePosition } from './usePosition';
 import { createOrder } from '../../http/orderApi';
+import Map from '../Map/Map';
 
 const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "14ff958eb194fcb4809c2f0661a7c8a2549d4cd1";
 
-const SearchBlock = () => {
+const SearchBlock = ({onSelect}) => {
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp;
     const [flag, setFlag] = useState(false)
@@ -171,6 +172,7 @@ const SearchBlock = () => {
         let resizable = document.getElementById('SearchBlock');
         let input = document.getElementById('search');
         let result = document.getElementById('result');
+        onSelect([parseFloat(article['data']['geo_lon']), parseFloat(article['data']['geo_lat'])])
         setCity(article['data']['city'] + ", " + article['data']['region_with_type'])
         setAddress(article['value']);
         setValue(article['value'].replace(article['data']['region_with_type'] + ',', ''))
