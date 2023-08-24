@@ -12,7 +12,7 @@ const OrderHistory = observer(() => {
 
     useEffect(() => {
         console.log(tg.initDataUnsafe.user.id)
-        fetchOrders(tg.initDataUnsafe.user.id).then(data => order.setOrders(data))
+        fetchOrders(tg.initDataUnsafe.user.id).then(resp => order.setOrders(resp.data))
        }, [])
 
     return (
