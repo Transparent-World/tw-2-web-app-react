@@ -19,7 +19,7 @@ const OrderHistory = observer(() => {
         <div className={'Orderhistory'}>
             <a className='OrderHistory_text'>История заказов</a>
             <div className='orders'>
-            {order.orders.reverse().map(order =>
+            {order.orders.toReversed().map(order =>
                 <Order id={order.id} address={order.address}/>
             )}
             </div>
