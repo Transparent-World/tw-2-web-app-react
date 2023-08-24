@@ -11,6 +11,7 @@ const OrderHistory = observer(() => {
     const tg = window.Telegram.WebApp;
 
     useEffect(() => {
+        console.log(tg.initDataUnsafe.user.id)
         fetchOrders(tg.initDataUnsafe.user.id).then(data => order.setOrders(data))
        }, [])
 
