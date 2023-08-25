@@ -11,7 +11,7 @@ const OrderPage = () => {
         address: 'Мытищи 1',
         radius: '200',
         status: 0,
-    },)
+    })
 
 
     useEffect(() => {
@@ -21,7 +21,8 @@ const OrderPage = () => {
 
     return (
         <div>
-            test
+            <a>test</a>
+            {resp}
         </div>
     );
 };
