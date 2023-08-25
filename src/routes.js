@@ -24,7 +24,7 @@ export const publicRoutes = [
         Component: MapPage,
     },
     {
-        path: ORDER_ROUTE + '/:id',
+        path: ORDER_ROUTE,
         Component: OrderPage,
     }
 ]
