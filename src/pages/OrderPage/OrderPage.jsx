@@ -21,8 +21,8 @@ const OrderPage = () => {
 
     return (
         <div>
-            <a>test</a>
-            {order}
+            <a>{order}</a>
+ 
         </div>
     );
 };
