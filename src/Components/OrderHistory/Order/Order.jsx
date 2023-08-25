@@ -6,7 +6,7 @@ const Order = ({id, address}) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/orderPage',{state:{id: id}});
+        navigate('/order',{state:{id: id}});
     }
 
     return (
