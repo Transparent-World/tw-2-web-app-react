@@ -21,8 +21,7 @@ const OrderPage = () => {
 
     return (
         <div>
-            <a>{order}</a>
- 
+        {order.id}
         </div>
     );
 };
