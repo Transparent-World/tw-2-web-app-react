@@ -3,7 +3,7 @@ import {useLocation} from 'react-router-dom';
 import ChannelLink from '../../Components/ChannelLink/ChannelLink';
 import './OrderPage.css'
 import { fetchOrder } from '../../http/orderApi';
-import {mapboxgl, mapboxSdk} from 'mapbox-gl';
+import mapboxSdk from 'mapbox-gl';
 
 const OrderPage = () => {
     const location = useLocation();
@@ -14,7 +14,8 @@ const OrderPage = () => {
 
 
     useEffect(() => {
-        fetchOrder(location.state.id).then(resp => setOrder(resp.data[0]))
+        //fetchOrder(location.state.id).then(resp => setOrder(resp.data[0]))
+        fetchOrder(location.state.id).then(resp => onOrderReceived(resp.data[0].lon,resp.data[0].lat))
         /*if (map.current) return; // initialize map only once
         console.log(order)
         map.current = new mapboxgl.Map({
