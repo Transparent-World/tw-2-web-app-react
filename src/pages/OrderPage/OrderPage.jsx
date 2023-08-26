@@ -7,6 +7,7 @@ import mapboxgl from 'mapbox-gl';
 
 const OrderPage = () => {
     const location = useLocation();
+    const [zoom, setZoom] = useState(9);
     const [order, setOrder] = useState({})
     const mapContainer = React.useRef(null);
     const map = React.useRef(null);
