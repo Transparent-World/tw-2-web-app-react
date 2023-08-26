@@ -25,10 +25,6 @@ const OrderPage = () => {
         */
        }, [])
 
-    const onOrderReceived = useCallback((lon, lat) => {
-        
-        
-    }, [location])
 
     return (
         <div>
