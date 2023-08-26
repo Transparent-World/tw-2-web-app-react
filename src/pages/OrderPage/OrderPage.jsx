@@ -15,7 +15,7 @@ const OrderPage = () => {
 
     useEffect(() => {
         fetchOrder(location.state.id).then(resp => setOrder(resp.data[0]))
-        if (map.current) return; // initialize map only once
+        if (map.current || !order) return; // initialize map only once
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v12',
