@@ -17,8 +17,9 @@ const OrderPage = () => {
 
 
     useEffect(() => {
-        fetchOrder(location.state.id).then(resp => setOrder(resp))//Нужно передавать id из    
+        fetchOrder(location.state.id).then(resp => setOrder(resp))  
         console.log(location.state.id)
+        console.log(order)
        }, [])
 
     return (
