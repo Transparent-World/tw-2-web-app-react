@@ -15,7 +15,7 @@ const OrderPage = () => {
 
     useEffect(() => {
         //fetchOrder(location.state.id).then(resp => setOrder(resp.data[0]))
-        fetchOrder(location.state.id).then(resp => onOrderReceived(resp.data[0].lon,resp.data[0].lat))
+        fetchOrder(location.state.id).then(resp => setOrder(resp.data[0]))
         /*if (map.current) return; // initialize map only once
         console.log(order)
         map.current = new mapboxgl.Map({
@@ -28,25 +28,13 @@ const OrderPage = () => {
        }, [])
 
     const onOrderReceived = useCallback((lon, lat) => {
-        const request = mapboxClient.static.getStaticImage({
-            ownerId: 'mapbox',
-            styleId: 'light-v10',
-            width: 500,
-            height: 350,
-            position: {
-            coordinates: [lon, lat],
-            zoom: 12
-            },
-            });
-        setImgUrl(request.url());
+        
         
     }, [location])
 
     return (
         <div>
-            <div className='mapimg'>
-                {imgUrl}
-            </div>
+            <img className='mapimg' src='https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/-121.3447,38.5826,9,0/300x200?access_token=pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ'/>
             <div className='link'>
             <ChannelLink />
             </div>
