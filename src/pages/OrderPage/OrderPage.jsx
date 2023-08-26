@@ -5,15 +5,7 @@ import { fetchOrder } from '../../http/orderApi';
 
 const OrderPage = () => {
     const location = useLocation();
-    const [order, setOrder] = useState({
-        id: 1,
-        userid: '736466798',
-        lon: '23.45',
-        lat: '23.45',
-        address: 'Мытищи 1',
-        radius: '200',
-        status: 0,
-    })
+    const [order, setOrder] = useState()
 
 
     useEffect(() => {
