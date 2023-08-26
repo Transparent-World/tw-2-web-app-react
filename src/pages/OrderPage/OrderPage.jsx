@@ -1,8 +1,10 @@
 import React, {useEffect,useState} from 'react';
+import {useLocation} from 'react-router-dom';
 import './OrderPage.css'
 import { fetchOrder } from '../../http/orderApi';
 
 const OrderPage = () => {
+    const location = useLocation();
     const [order, setOrder] = useState({
         id: 1,
         userid: '736466798',
@@ -15,8 +17,8 @@ const OrderPage = () => {
 
 
     useEffect(() => {
-        fetchOrder().then(resp => setOrder(resp))
-        console.log(order)
+        fetchOrder(location.state.id).then(resp => setOrder(resp))//Нужно передавать id из    
+        console.log(location.state.id)
        }, [])
 
     return (
