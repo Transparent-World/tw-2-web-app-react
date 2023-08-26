@@ -1,5 +1,6 @@
 import React, {useEffect,useState} from 'react';
 import {useLocation} from 'react-router-dom';
+import ChannelLink from '../../Components/ChannelLink/ChannelLink';
 import './OrderPage.css'
 import { fetchOrder } from '../../http/orderApi';
 import mapboxgl from 'mapbox-gl';
