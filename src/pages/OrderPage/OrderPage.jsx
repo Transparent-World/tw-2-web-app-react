@@ -2,6 +2,7 @@ import React, {useEffect,useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import './OrderPage.css'
 import { fetchOrder } from '../../http/orderApi';
+import mapboxgl from 'mapbox-gl';
 
 const OrderPage = () => {
     const location = useLocation();
@@ -24,7 +25,16 @@ const OrderPage = () => {
     return (
         <div>
             <div ref={mapContainer} className="map-container"/>
-            {order.id}
+            <div className='link'>
+            <ChannelLink />
+            </div>
+            <div className='order_text_block'>
+                Описание заказа
+                <div className='order_status_text'>{order.status}</div>
+                <div className='order_address_text'>{order.address}</div>
+                <div className='order_radius_text'>{order.radius}</div>
+            </div>
+            
         </div>
     );
 };
