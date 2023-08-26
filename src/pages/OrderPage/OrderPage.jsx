@@ -3,14 +3,12 @@ import {useLocation} from 'react-router-dom';
 import ChannelLink from '../../Components/ChannelLink/ChannelLink';
 import './OrderPage.css'
 import { fetchOrder } from '../../http/orderApi';
-import mapboxSdk from 'mapbox-gl';
 
 const OrderPage = () => {
     const location = useLocation();
     const [imgUrl, setImgUrl] = useState('')
     const [zoom, setZoom] = useState(9);
     const [order, setOrder] = useState({})
-    const mapboxClient = mapboxSdk({ accessToken: 'pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ' });
 
 
     useEffect(() => {
