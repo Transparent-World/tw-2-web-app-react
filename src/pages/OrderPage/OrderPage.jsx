@@ -9,14 +9,14 @@ const OrderPage = () => {
 
 
     useEffect(() => {
-        fetchOrder(location.state.id).then(resp => console.log(resp.data))  
+        fetchOrder(location.state.id).then(resp => setOrder(resp.data[0]))  
         console.log(location.state.id)
         console.log(order)
        }, [])
 
     return (
         <div>
-            test
+            {order.id}
         </div>
     );
 };
