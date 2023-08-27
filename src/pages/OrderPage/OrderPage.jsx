@@ -8,6 +8,8 @@ import mapboxgl from 'mapbox-gl';
 mapboxgl.accessToken = 'pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ';
 
 const OrderPage = () => {
+    const tg = window.Telegram.WebApp;
+
     const mapContainer = React.useRef(null);
     const map = React.useRef(null);
     const location = useLocation();
