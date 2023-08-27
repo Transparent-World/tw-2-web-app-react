@@ -33,7 +33,7 @@ const OrderPage = () => {
         setOrder(data)
         console.log('order loaded')
         if (data) {
-            console.log(JSON.stringify(coordinates))
+            console.log(JSON.stringify(data))
             map.current.flyTo({
                 center: [data.lon, data.lat]
             });
