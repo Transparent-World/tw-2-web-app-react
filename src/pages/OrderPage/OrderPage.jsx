@@ -32,7 +32,7 @@ const OrderPage = () => {
     const onDataReceived = useCallback((data) => {
         setOrder(data)
         console.log('order loaded')
-        if (coordinates) {
+        if (data) {
             console.log(JSON.stringify(coordinates))
             map.current.flyTo({
                 center: [data.lon, data.lat]
