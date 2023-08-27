@@ -1,6 +1,6 @@
 
 .order_text_block{
-    padding-left: 20px;
+    padding-left: 5%;
     padding-top: 10px;
     width: 100%;
     min-height: 60vh;
@@ -13,26 +13,26 @@
     margin-top: 40vh;
     transition: all 0.2s linear;
     overflow: hidden;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: 500;
 }
 
 .order_status_text{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--tg-theme-hint-color);
+}
+
+.order_address_text{
     margin-top: 10px;
     font-size: 14px;
     font-weight: 300;
     color: var(--tg-theme-hint-color);
 }
 
-.order_address_text{
-    margin-top: 5px;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--tg-theme-hint-color);
-}
-
 .order_radius_text{
-    margin-top: 5px;
+    margin-top: 10px;
     font-size: 14px;
     font-weight: 300;
     color: var(--tg-theme-hint-color);
