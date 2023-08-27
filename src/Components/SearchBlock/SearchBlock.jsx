@@ -30,7 +30,8 @@ const SearchBlock = ({onSelect}) => {
     const sendOrder =useCallback( () => {
         console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
         createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
-        navigate("/mainpage");
+        navigate("/mainpage", {state: {update: 1}});
+        tg.MainButton.hide();
     })
     
     useEffect(() => {
