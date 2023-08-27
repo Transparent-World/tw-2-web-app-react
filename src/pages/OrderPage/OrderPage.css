@@ -17,23 +17,38 @@
     font-weight: 500;
 }
 
-.order_status_text{
+.order_status{
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--tg-theme-hint-color);
+}
+
+.order_status_text{
+    font-weight: 500;
+    color: green;
+}
+
+.order_address{
+    margin-top: 10px;
+    font-size: 18px;
     font-weight: 300;
     color: var(--tg-theme-hint-color);
 }
 
 .order_address_text{
+    font-weight: 500;
+    color: var(--tg-theme-text-color);
+}
+
+.order_radius{
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 300;
     color: var(--tg-theme-hint-color);
 }
 
 .order_radius_text{
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--tg-theme-hint-color);
+    font-weight: 500;
+    color: var(--tg-theme-text-color);
 }

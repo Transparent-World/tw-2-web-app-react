@@ -57,9 +57,9 @@ const OrderPage = () => {
             </div>
             <div className='order_text_block'>
                 Описание заказа
-                <div className='order_status_text'>Статус: {order.status}</div>
-                <div className='order_address_text'>Адрес: {order.address}</div>
-                <div className='order_radius_text'>Радиус: {order.radius}</div>
+                <div className='order_status'>Статус: <a className='order_status_text'>{order.status}</a></div>
+                <div className='order_address'>Адрес: <a className='order_address_text'>{order.address}</a></div>
+                <div className='order_radius'>Радиус: <a className='order_radius_text'>{order.radius} метров</a> </div>
             </div>
             
         </div>
