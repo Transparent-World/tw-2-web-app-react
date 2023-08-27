@@ -17,9 +17,10 @@ const OrderPage = () => {
 
 
     useEffect(() => {
-        //fetchOrder(location.state.id).then(resp => setOrder(resp.data[0]))
+        tg.BackButton.show()
+        tg.onEvent('backButtonClicked', onBack)
         fetchOrder(location.state.id).then(resp => onDataReceived(resp.data[0]))
-        if (map.current) return; // initialize map only once
+        if (map.current) return;
         console.log(order)
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
@@ -38,9 +39,12 @@ const OrderPage = () => {
                 center: [data.lon, data.lat]
             });
         }
-
-
     }, [location])
+
+    const onBack = useCallback(() => {
+        navigate("/mainpage");
+        tg.BackButton.hide();
+    }, [])
 
        //<img className='mapimg' src={'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/'+order.lon+','+order.lat+',9,0/300x200?access_token=pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ'}/>
     return (
