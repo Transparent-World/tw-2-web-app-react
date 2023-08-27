@@ -12,7 +12,7 @@ const Order = ({id, address}) => {
     return (
         <div className={'Order'} onClick={handleClick}>
             <a className='order_id'>Заказ № {id}</a>
-            <a className='order_address'>По адресу {address}</a>
+            <a className='order_address_preview'>По адресу {address}</a>
         </div>
     );
 };

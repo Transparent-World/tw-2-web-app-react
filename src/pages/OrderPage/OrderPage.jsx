@@ -3,12 +3,14 @@ import {useLocation} from 'react-router-dom';
 import ChannelLink from '../../Components/ChannelLink/ChannelLink';
 import './OrderPage.css'
 import { fetchOrder } from '../../http/orderApi';
+import { useNavigate } from 'react-router-dom';
 import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ';
 
 const OrderPage = () => {
     const tg = window.Telegram.WebApp;
+    const navigate = useNavigate();
 
     const mapContainer = React.useRef(null);
     const map = React.useRef(null);
