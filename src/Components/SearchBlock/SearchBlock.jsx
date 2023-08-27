@@ -31,6 +31,7 @@ const SearchBlock = ({onSelect}) => {
         console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
         createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
         navigate("/mainpage", {state: {update: 1}});
+        navigate(0);
         tg.MainButton.hide();
     })
     
