@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './MainPage.css'
 import { useLocation } from 'react-router-dom';
 
