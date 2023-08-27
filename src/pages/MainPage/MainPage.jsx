@@ -11,7 +11,7 @@ const MainPage = () => {
     const location = useLocation();
 
     useEffect(() => {
-        if (location.state.update){
+        if (location.state){
             window.location.reload(false);
         }
     }, [])
