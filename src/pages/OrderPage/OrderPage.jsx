@@ -55,6 +55,8 @@ const OrderPage = () => {
         tg.BackButton.hide();
     }, [])
 
+    const link = "https://kml4earth.appspot.com/circle.gsp?radius="+ order.radius +"&units=m&fm=1&lat=" + center.lat + "&lon=" + center.lon + "&color=ff0000ff&width=2"
+
        //<img className='mapimg' src={'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/'+order.lon+','+order.lat+',9,0/300x200?access_token=pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ'}/>
     return (
         <div>
@@ -67,7 +69,7 @@ const OrderPage = () => {
                 <div className='order_status'>Статус: <a className='order_status_text'>{order.status}</a></div>
                 <div className='order_address'>Адрес: <a className='order_address_text'>{order.address}</a></div>
                 <div className='order_radius'>Радиус: <a className='order_radius_text'>{order.radius} метров</a> </div>
-                <link className='order_radius_text' href={"https://kml4earth.appspot.com/circle.gsp?radius="+ order.radius +"&units=m&fm=1&lat=" + center.lat + "&lon=" + center.lon + "&color=ff0000ff&width=2"}>Скачать kml файл</link>
+                <link className='order_radius_text' href="https://kml4earth.appspot.com/circle.gsp?radius=1&units=m&fm=1&lat=53.63930&lon=47.23945&color=ff0000ff&width=2">Скачать kml файл</link>
             </div>
             
         </div>
