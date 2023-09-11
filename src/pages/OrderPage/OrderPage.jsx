@@ -56,11 +56,12 @@ const OrderPage = () => {
         tg.BackButton.hide();
     }, [])
 
-    const downloadFile = (fileName = 'response.kml') => {
+    const downloadFile = (fileName = 'circle.kml') => {
         fetch("https://kml4earth.appspot.com/circle.gsp?radius=1&units=m&fm=1&lat=53.63930&lon=47.23945&color=ff0000ff&width=2", {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/pdf',
+                'Content-Type': 'application/vnd.google-earth.kml+xml;charset=iso-8859-1',
+                'Content-Disposition': 'attachment; filename=circle.kml'
             },
         })
             .then(response => response.blob())
@@ -93,7 +94,7 @@ const OrderPage = () => {
                 <div className='order_status'>Статус: <a className='order_status_text'>{order.status}</a></div>
                 <div className='order_address'>Адрес: <a className='order_address_text'>{order.address}</a></div>
                 <div className='order_radius'>Радиус: <a className='order_radius_text'>{order.radius} метров</a> </div>
-                <Link className='order_radius_text' href={link}>Скачать kml файл</Link>
+                <Link className='order_radius_text' onClick={downloadFile}>Скачать kml файл</Link>
             </div>
 
         </div>
