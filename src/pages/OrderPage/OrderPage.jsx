@@ -6,6 +6,7 @@ import { fetchOrder } from '../../http/orderApi';
 import { useNavigate } from 'react-router-dom';
 import mapboxgl from 'mapbox-gl';
 import { Link } from "react-router-dom"
+import FileSaver from 'file-saver';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ';
 
@@ -67,17 +68,22 @@ const OrderPage = () => {
         })
             .then(response => response.blob())
             .then(blob => {
-                const url = window.URL.createObjectURL(new Blob([blob]));
+                var blob = new Blob([blob], {
+                    type: "application/vnd.google-earth.kml+xml;charset=iso-8859-1"
+                  });   
+                //const url = window.URL.createObjectURL(new Blob([blob]));
 
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = fileName;
+                //const link = document.createElement('a');
+                //link.href = url;
+                //link.download = fileName;
 
-                document.body.appendChild(link);
+                //document.body.appendChild(link);
 
-                link.click();
+                //link.click();
 
-                link.parentNode.removeChild(link);
+                //link.parentNode.removeChild(link);
+                FileSaver.saveAs(blob, "test.kml");
+
             });
     }
 
