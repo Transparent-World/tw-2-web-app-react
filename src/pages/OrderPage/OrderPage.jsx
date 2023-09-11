@@ -15,9 +15,9 @@ const OrderPage = () => {
     const mapContainer = React.useRef(null);
     const map = React.useRef(null);
     const location = useLocation();
-    const [imgUrl, setImgUrl] = useState('')
     const [zoom, setZoom] = useState(9);
     const [order, setOrder] = useState({})
+    const [center, setCenter] = useState({})
 
 
     useEffect(() => {
@@ -37,6 +37,10 @@ const OrderPage = () => {
     const onDataReceived = useCallback((data) => {
         setOrder(data)
         console.log('order loaded')
+        setCenter({
+            lon: data.lon,
+            lat: data.lat
+        })
         if (data) {
             console.log(JSON.stringify(data))
             map.current.flyTo({
@@ -63,7 +67,7 @@ const OrderPage = () => {
                 <div className='order_status'>Статус: <a className='order_status_text'>{order.status}</a></div>
                 <div className='order_address'>Адрес: <a className='order_address_text'>{order.address}</a></div>
                 <div className='order_radius'>Радиус: <a className='order_radius_text'>{order.radius} метров</a> </div>
-                <link className='order_radius_text' href={"https://kml4earth.appspot.com/circle.gsp?radius="+ order.radius +"&units=m&fm=1&lat=" + data.lat + "&lon=" + data.lon + "&color=ff0000ff&width=2"}>Скачать kml файл</link>
+                <link className='order_radius_text' href={"https://kml4earth.appspot.com/circle.gsp?radius="+ order.radius +"&units=m&fm=1&lat=" + center.lat + "&lon=" + center.lon + "&color=ff0000ff&width=2"}>Скачать kml файл</link>
             </div>
             
         </div>
