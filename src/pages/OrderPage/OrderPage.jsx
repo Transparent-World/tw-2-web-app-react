@@ -67,6 +67,7 @@ const OrderPage = () => {
             },
         })
             .then(response => response.blob())
+            .then(console.log)
             .then(blob => {
                 var blob = new Blob([blob], {
                     type: "application/vnd.google-earth.kml+xml;charset=iso-8859-1"
