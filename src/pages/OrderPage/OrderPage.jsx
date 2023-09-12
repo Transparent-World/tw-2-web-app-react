@@ -60,10 +60,6 @@ const OrderPage = () => {
     const downloadFile = (fileName = 'circle.kml') => {
         fetch("https://kml4earth.appspot.com/circle.gsp?radius=1&units=m&fm=1&lat=53.63930&lon=47.23945&color=ff0000ff&width=2", {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/vnd.google-earth.kml+xml;charset=iso-8859-1',
-                'Content-Disposition': 'attachment; filename=circle.kml'
-            },
         })
             .then(response => {
                 console.log(response)
