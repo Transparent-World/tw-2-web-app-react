@@ -77,8 +77,7 @@ const OrderPage = () => {
                 link.href = url;
                 link.download = fileName;
 
-                //document.body.appendChild(link);
-                document.appendChild(link);
+                document.body.appendChild(link);
 
                 link.click();
                 link.remove();
