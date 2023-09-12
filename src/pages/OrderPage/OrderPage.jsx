@@ -66,7 +66,6 @@ const OrderPage = () => {
                 'Content-Disposition': 'attachment; filename=circle.kml'
             },
         })
-            .then(response => console.log(response))
             .then(response => response.blob())
             .then(blob => {
                 //var blob = new Blob([blob], {
@@ -78,11 +77,12 @@ const OrderPage = () => {
                 link.href = url;
                 link.download = fileName;
 
-                document.body.appendChild(link);
+                //document.body.appendChild(link);
+                document.appendChild(link);
 
                 link.click();
-
-                link.parentNode.removeChild(link);
+                link.remove();
+                //link.parentNode.removeChild(link);
                 //FileSaver.saveAs(blob, "test.kml");
 
             });
