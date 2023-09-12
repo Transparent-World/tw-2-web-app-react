@@ -66,6 +66,7 @@ const OrderPage = () => {
                 'Content-Disposition': 'attachment; filename=circle.kml'
             },
         })
+            .then(response => console.log(response))
             .then(response => response.blob())
             .then(blob => {
                 //var blob = new Blob([blob], {
