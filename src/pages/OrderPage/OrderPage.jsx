@@ -67,23 +67,22 @@ const OrderPage = () => {
             },
         })
             .then(response => response.blob())
-            .then(console.log)
             .then(blob => {
-                var blob = new Blob([blob], {
-                    type: "application/vnd.google-earth.kml+xml;charset=iso-8859-1"
-                  });   
-                //const url = window.URL.createObjectURL(new Blob([blob]));
+                //var blob = new Blob([blob], {
+                //    type: "application/vnd.google-earth.kml+xml;charset=iso-8859-1"
+                //  });   
+                const url = window.URL.createObjectURL(new Blob([blob]));
+                console.log(url)
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = fileName;
 
-                //const link = document.createElement('a');
-                //link.href = url;
-                //link.download = fileName;
+                document.body.appendChild(link);
 
-                //document.body.appendChild(link);
+                link.click();
 
-                //link.click();
-
-                //link.parentNode.removeChild(link);
-                FileSaver.saveAs(blob, "test.kml");
+                link.parentNode.removeChild(link);
+                //FileSaver.saveAs(blob, "test.kml");
 
             });
     }
