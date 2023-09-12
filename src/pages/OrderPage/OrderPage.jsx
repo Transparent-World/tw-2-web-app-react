@@ -66,7 +66,10 @@ const OrderPage = () => {
                 'Content-Disposition': 'attachment; filename=circle.kml'
             },
         })
-            .then(response => response.blob())
+            .then(response => {
+                console.log(response)
+                response.blob();
+            })
             .then(blob => {
                 //var blob = new Blob([blob], {
                 //    type: "application/vnd.google-earth.kml+xml;charset=iso-8859-1"
