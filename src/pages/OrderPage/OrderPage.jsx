@@ -139,11 +139,6 @@ const OrderPage = () => {
         var params = {
             method: "POST",
             body: formData,
-            headers: {
-                // Укажите заголовок Content-Type как multipart/form-data
-                // Браузер автоматически установит правильный границу
-                'Content-Type': 'multipart/form-data',
-              },
         }
 
         const resp = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params)
