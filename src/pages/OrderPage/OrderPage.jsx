@@ -118,7 +118,7 @@ const OrderPage = () => {
         // Теперь у вас есть KML-код в переменной kml. Вы можете использовать его по вашему усмотрению.
 
         // Например, вы можете создать ссылку для загрузки KML-файла:
-        var blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
+        /*var blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
         var url = URL.createObjectURL(blob);
         var link = document.createElement('a');
         link.href = url;
@@ -127,18 +127,23 @@ const OrderPage = () => {
         document.body.appendChild(link);
         link.click();
         link.remove();
+        */
 
         const formData = new FormData();
 
         // Добавляем параметры в объект FormData
         formData.append("chat_id", "736466798");
-        formData.append("document", "BQACAgIAAxkBAAMqZQI2FHlOw6MBI8sOPtC1T4YEOoYAApw7AAJAOglIRsPLnAf65TwwBA");
+        formData.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), 'test.kml');
 
 
         var params = {
             method: "POST",
-            body: formData
-
+            body: formData,
+            headers: {
+                // Укажите заголовок Content-Type как multipart/form-data
+                // Браузер автоматически установит правильный границу
+                'Content-Type': 'multipart/form-data',
+              },
         }
 
         const resp = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params)
