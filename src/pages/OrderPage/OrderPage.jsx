@@ -88,7 +88,7 @@ const OrderPage = () => {
         var centerLat = center.lat; // Широта
         var centerLng = center.lon; // Долгота
 
-        var radius = 1; // 1 километр
+        var radius = order.radius/1000; // 1 километр
 
         // Генерация KML-кода
         var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
