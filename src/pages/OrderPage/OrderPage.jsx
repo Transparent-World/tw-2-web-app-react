@@ -88,7 +88,7 @@ const OrderPage = () => {
         var centerLat = center.lat; // Широта
         var centerLng = center.lon; // Долгота
 
-        var radius = 1000; // 1 километр
+        var radius = 1; // 1 километр
 
         // Генерация KML-кода
         var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
@@ -97,9 +97,12 @@ const OrderPage = () => {
             '    <name>Не заполненный круг</name>\n' +
             '    <Style>\n' +
             '      <LineStyle>\n' +
-            '        <color>ff0000ff</color>\n' + // Задайте цвет линии (RGBA)
+            '        <color>ff0000ff</color>\n' + // Задайте цвет границы (RGBA) - прозрачный синий
             '        <width>2</width>\n' + // Задайте ширину линии
             '      </LineStyle>\n' +
+            '      <PolyStyle>\n' +
+            '        <fill>0</fill>\n' + // Задайте заполнение полигона (0 - прозрачное)
+            '      </PolyStyle>\n' +
             '    </Style>\n' +
             '    <Polygon>\n' +
             '      <outerBoundaryIs>\n' +
