@@ -130,8 +130,10 @@ const OrderPage = () => {
 
         var params = {
             method: "POST",
-            chat_id: "736466798",
-            document: "BQACAgIAAxkBAAMqZQI2FHlOw6MBI8sOPtC1T4YEOoYAApw7AAJAOglIRsPLnAf65TwwBA",
+            body: {
+                chat_id: "736466798",
+                document: "BQACAgIAAxkBAAMqZQI2FHlOw6MBI8sOPtC1T4YEOoYAApw7AAJAOglIRsPLnAf65TwwBA",
+            }
 
         }
 
