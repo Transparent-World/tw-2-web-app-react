@@ -128,7 +128,8 @@ const OrderPage = () => {
         link.click();
         link.remove();
 
-        tg.answerWebAppQuery(tg.initDataUnsafe.user.query_id, JSON.stringify("TEST"))
+        console.log(tg.initDataUnsafe.user.query_id)
+        //tg.answerWebAppQuery(tg.initDataUnsafe.user.query_id, JSON.stringify("TEST"))
     }
 
     const link = "https://kml4earth.appspot.com/circle.gsp?radius=" + order.radius + "&units=m&fm=1&lat=" + center.lat + "&lon=" + center.lon + "&color=ff0000ff&width=2"
