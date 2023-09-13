@@ -58,7 +58,7 @@ const OrderPage = () => {
     }, [])
 
     const downloadFile = (fileName = 'circle.kml') => {
-        fetch("https://kml4earth.appspot.com/circle.gsp?radius=1&units=m&fm=1&lat=53.63930&lon=47.23945&color=ff0000ff&width=2", {
+        /*fetch("https://kml4earth.appspot.com/circle.gsp?radius=1&units=m&fm=1&lat=53.63930&lon=47.23945&color=ff0000ff&width=2", {
             method: 'GET',
         })
             .then(response => {
@@ -81,8 +81,52 @@ const OrderPage = () => {
                 link.remove();
                 //link.parentNode.removeChild(link);
                 //FileSaver.saveAs(blob, "test.kml");
-
+                
             });
+            */
+
+        var centerLat = center.lat; // Широта
+        var centerLng = center.lon; // Долгота
+            
+        var radius = 1000; // 1 километр
+
+        // Генерация KML-кода
+        var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+            '<kml xmlns="http://www.opengis.net/kml/2.2">\n' +
+            '  <Placemark>\n' +
+            '    <name>Круг</name>\n' +
+            '    <Polygon>\n' +
+            '      <outerBoundaryIs>\n' +
+            '        <LinearRing>\n' +
+            '          <coordinates>';
+
+        // Вычисление координат круга
+        for (var i = 0; i <= 360; i += 10) {
+            var angle = (i * Math.PI) / 180;
+            var lat = centerLat + (radius / 111.32) * Math.cos(angle);
+            var lng = centerLng + (radius / (111.32 * Math.cos(centerLat * (Math.PI / 180)))) * Math.sin(angle);
+            kml += lng + ',' + lat + ',0\n'; // Здесь 0 - это высота (могут быть другие значения)
+        }
+
+        kml += '          </coordinates>\n' +
+            '        </LinearRing>\n' +
+            '      </outerBoundaryIs>\n' +
+            '    </Polygon>\n' +
+            '  </Placemark>\n' +
+            '</kml>';
+
+        // Теперь у вас есть KML-код в переменной kml. Вы можете использовать его по вашему усмотрению.
+
+        // Например, вы можете создать ссылку для загрузки KML-файла:
+        var blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'circle.kml';
+        link.innerHTML = 'Скачать KML файл';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
     }
 
     const link = "https://kml4earth.appspot.com/circle.gsp?radius=" + order.radius + "&units=m&fm=1&lat=" + center.lat + "&lon=" + center.lon + "&color=ff0000ff&width=2"
@@ -99,7 +143,7 @@ const OrderPage = () => {
                 <div className='order_status'>Статус: <a className='order_status_text'>{order.status}</a></div>
                 <div className='order_address'>Адрес: <a className='order_address_text'>{order.address}</a></div>
                 <div className='order_radius'>Радиус: <a className='order_radius_text'>{order.radius} метров</a> </div>
-                <Link className='order_radius_text' href="https://kml4earth.appspot.com/circle.gsp?radius=1&units=m&fm=1&lat=53.63930&lon=47.23945&color=ff0000ff&width=2">Скачать kml файл</Link>
+                <Link className='order_radius_text' onClick={downloadFile}>Скачать kml файл</Link>
             </div>
 
         </div>
