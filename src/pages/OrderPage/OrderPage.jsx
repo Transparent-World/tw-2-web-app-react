@@ -130,9 +130,12 @@ const OrderPage = () => {
 
         var params = {
             method: "POST",
+            chat_id: "736466798",
+            document: "BQACAgIAAxkBAAMqZQI2FHlOw6MBI8sOPtC1T4YEOoYAApw7AAJAOglIRsPLnAf65TwwBA",
+
         }
 
-        const resp = fetch("https://api.telegram.org/123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew1/sendDocument?chat_id=736466798&document=BQACAgIAAxkBAAMqZQI2FHlOw6MBI8sOPtC1T4YEOoYAApw7AAJAOglIRsPLnAf65TwwBA", params)
+        const resp = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params)
 
         //tg.answerWebAppQuery(tg.initDataUnsafe.user.query_id, JSON.stringify("TEST"))
     }
