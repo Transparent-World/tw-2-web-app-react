@@ -87,7 +87,7 @@ const OrderPage = () => {
 
         var centerLat = center.lat; // Широта
         var centerLng = center.lon; // Долгота
-            
+
         var radius = 1000; // 1 километр
 
         // Генерация KML-кода
@@ -128,12 +128,16 @@ const OrderPage = () => {
         link.click();
         link.remove();
 
+        const formData = new FormData();
+
+        // Добавляем параметры в объект FormData
+        formData.append("chat_id", "736466798");
+        formData.append("document", "BQACAgIAAxkBAAMqZQI2FHlOw6MBI8sOPtC1T4YEOoYAApw7AAJAOglIRsPLnAf65TwwBA");
+
+
         var params = {
             method: "POST",
-            body: {
-                chat_id: "736466798",
-                document: "BQACAgIAAxkBAAMqZQI2FHlOw6MBI8sOPtC1T4YEOoYAApw7AAJAOglIRsPLnAf65TwwBA",
-            }
+            body: formData
 
         }
 
