@@ -94,7 +94,13 @@ const OrderPage = () => {
         var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
             '<kml xmlns="http://www.opengis.net/kml/2.2">\n' +
             '  <Placemark>\n' +
-            '    <name>Круг</name>\n' +
+            '    <name>Не заполненный круг</name>\n' +
+            '    <Style>\n' +
+            '      <LineStyle>\n' +
+            '        <color>ff0000ff</color>\n' + // Задайте цвет линии (RGBA)
+            '        <width>2</width>\n' + // Задайте ширину линии
+            '      </LineStyle>\n' +
+            '    </Style>\n' +
             '    <Polygon>\n' +
             '      <outerBoundaryIs>\n' +
             '        <LinearRing>\n' +
@@ -105,7 +111,7 @@ const OrderPage = () => {
             var angle = (i * Math.PI) / 180;
             var lat = centerLat + (radius / 111.32) * Math.cos(angle);
             var lng = centerLng + (radius / (111.32 * Math.cos(centerLat * (Math.PI / 180)))) * Math.sin(angle);
-            kml += lng + ',' + lat + ',0\n'; // Здесь 0 - это высота (могут быть другие значения)
+            kml += lng + ',' + lat + ',0\n'; // Здесь 0 - это высота (может быть другое значение)
         }
 
         kml += '          </coordinates>\n' +
@@ -114,6 +120,7 @@ const OrderPage = () => {
             '    </Polygon>\n' +
             '  </Placemark>\n' +
             '</kml>';
+
 
         // Теперь у вас есть KML-код в переменной kml. Вы можете использовать его по вашему усмотрению.
 
