@@ -128,7 +128,7 @@ const OrderPage = () => {
         link.click();
         link.remove();
 
-        console.log(tg.initDataUnsafe.user.query_id)
+        console.log(tg.initDataUnsafe.query_id)
         //tg.answerWebAppQuery(tg.initDataUnsafe.user.query_id, JSON.stringify("TEST"))
     }
 
