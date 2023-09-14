@@ -28,12 +28,27 @@ const SearchBlock = ({onSelect}) => {
 
 
     const sendOrder = useCallback( () => {
+
+        const formData = new FormData();
+        // Добавляем параметры в объект FormData
+        formData.append("userid", tg.initDataUnsafe.user.id);
+        formData.append("lon", center.lng);
+        formData.append("lat", center.lat);
+        formData.append("address", address);
+        formData.append("radius", radius);
+
+        var params = {
+            method: "POST",
+            body: formData,
+        }
+
+        const resp = fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
+
         console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
-        const resp = createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
+        createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
         navigate("/mainpage");
         navigate(0);
         tg.MainButton.hide();
-        console.log(resp)
     })
     
     useEffect(() => {
