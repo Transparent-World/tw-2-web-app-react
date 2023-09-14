@@ -27,12 +27,13 @@ const SearchBlock = ({onSelect}) => {
     const [isOpen, setIsOpen] = useState(true);
 
 
-    const sendOrder =useCallback( () => {
+    const sendOrder = useCallback( () => {
         console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
-        createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
+        const resp = createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
         navigate("/mainpage");
         navigate(0);
         tg.MainButton.hide();
+        console.log(resp)
     })
     
     useEffect(() => {
