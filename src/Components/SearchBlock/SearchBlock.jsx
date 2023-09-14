@@ -45,7 +45,7 @@ const SearchBlock = ({onSelect}) => {
         const resp = fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
 
         console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
-        createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
+        //createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
         navigate("/mainpage");
         navigate(0);
         tg.MainButton.hide();
