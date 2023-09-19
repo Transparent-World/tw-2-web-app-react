@@ -215,6 +215,7 @@ const SearchBlock = ({ location, onSelect }) => {
 
     const onClickGeoButton = () => {
         let resizable = document.getElementById('SearchBlock');
+        let location_variants = document.getElementById('location_variants');
         let input = document.getElementById('search');
         let result = document.getElementById('result_geo');
         if (location.loaded) {
@@ -227,11 +228,10 @@ const SearchBlock = ({ location, onSelect }) => {
             setFlag(true)
             stat = 2 //влияет на location_variants
             resizable.style.height = '40vh';
+            location_variants.style.display = 'none';
             resizable.style.marginTop = '60vh';
             input.style.display = 'none';
             result.style.display = 'flex'
-            console.log(status)
-            console.log(stat)
 
         }
         //setCity(article['data']['city'] + ", " + article['data']['region_with_type'])
