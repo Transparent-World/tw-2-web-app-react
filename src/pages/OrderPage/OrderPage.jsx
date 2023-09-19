@@ -169,6 +169,7 @@ const OrderPage = () => {
                 Описание заказа
                 <div className='order_status'>Статус: <a className='order_status_text'>{order.status}</a></div>
                 <div className='order_address'>Адрес: <a className='order_address_text'>{order.address}</a></div>
+                <div className='order_address'>Координаты: <a className='order_address_text'>{order.lon} {order.lat}</a></div>
                 <div className='order_radius'>Радиус: <a className='order_radius_text'>{order.radius} метров</a> </div>
                 <Link className='order_radius_text' onClick={downloadFile}>Скачать kml файл</Link>
             </div>
