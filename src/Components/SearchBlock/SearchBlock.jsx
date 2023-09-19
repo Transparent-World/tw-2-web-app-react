@@ -241,6 +241,7 @@ const SearchBlock = ({ onSelect }) => {
                     {isOpen
                         ? Object.keys(articles).slice(0, 6).map(article => {
                             if (articles[article]['data']['geo_lat'])
+                            //test
                                 return (
                                     <li className={"autoCompleteItem"}
                                         onClick={(e) => onClickAutoCompleteItem(e, articles[article])}>
