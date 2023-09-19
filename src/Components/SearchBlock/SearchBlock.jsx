@@ -71,6 +71,7 @@ const SearchBlock = ({ location, onSelect }) => {
 
     const onBack = useCallback(() => {
         console.log(stat)
+        tg.MainButton.hide()
         if (stat == 1) {
             let resizable = document.getElementById('SearchBlock');
             let vars = document.getElementById('location_variants');
