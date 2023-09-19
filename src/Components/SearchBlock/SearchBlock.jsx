@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './SearchBlock.css'
 import { useSwipeable, SwipeEventData } from 'react-swipeable';
 import { useNavigate } from "react-router-dom";
+import { usePosition } from '../../Components/SearchBlock/usePosition';
 import { usePosition } from './usePosition';
 import { createOrder } from '../../http/orderApi';
 import Map from '../Map/Map';
@@ -9,7 +10,7 @@ import Map from '../Map/Map';
 const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "14ff958eb194fcb4809c2f0661a7c8a2549d4cd1";
 
-const SearchBlock = ({ onSelect }) => {
+const SearchBlock = ({ location, onSelect }) => {
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp;
     const [flag, setFlag] = useState(false)
@@ -213,6 +214,38 @@ const SearchBlock = ({ onSelect }) => {
 
     }
 
+    const onClickGeoButton = () => {
+        let resizable = document.getElementById('SearchBlock');
+        let input = document.getElementById('search');
+        let result = document.getElementById('result_geo');
+        if (location.loaded) {
+            onSelect([location.coordinates.lng, location.coordinates.lat])
+            setCenter({
+                lat: location.coordinates.lat,
+                lng: location.coordinates.lng
+            })
+            setAddress('test');
+            resizable.style.height = '40vh';
+            resizable.style.marginTop = '60vh';
+            input.style.display = 'none';
+            result.style.display = 'flex'
+            console.log(status)
+            console.log(stat)
+
+        }
+        //setCity(article['data']['city'] + ", " + article['data']['region_with_type'])
+        //setAddress(article['value']);
+        //setValue(article['value'].replace(article['data']['region_with_type'] + ',', ''))
+        //onChangeCity(e, 1);
+        /*resizable.style.height = '40vh';
+        resizable.style.marginTop = '60vh';
+        input.style.display = 'none';
+        result.style.display = 'flex'
+        console.log(status)
+        console.log(stat)*/
+
+    }
+
     return (
         <div active className={'SearchBlock'} id='SearchBlock'>
             <div className='search' id='search'>
@@ -229,7 +262,7 @@ const SearchBlock = ({ onSelect }) => {
                     placeholder="Введите адрес" />
             </div>
             <div {...handlers} className='location_variants' id='location_variants'>
-                <div className='geolocation' id='geolocation'>
+                <div className='geolocation' id='geolocation' onClick={onClickGeoButton}>
                     Запросить гелокацию
                 </div>
                 <div className='on_map_select'>
@@ -241,7 +274,7 @@ const SearchBlock = ({ onSelect }) => {
                     {isOpen
                         ? Object.keys(articles).slice(0, 6).map(article => {
                             if (articles[article]['data']['geo_lat'])
-                            //test
+                                //test
                                 return (
                                     <li className={"autoCompleteItem"}
                                         onClick={(e) => onClickAutoCompleteItem(e, articles[article])}>
@@ -269,6 +302,28 @@ const SearchBlock = ({ onSelect }) => {
                         </a>
                         <a className='city'>
                             {city}
+                        </a>
+                    </div>
+                </div>
+                <div className='radius'>
+                    <a className='locate_text'>Радиус области снимка</a>
+                    <select value={radius}
+                        onChange={e => setRadius(e.target.value)}
+                        className='choice'>
+                        <option value="" selected>Укажите радиус снимка</option>
+                        <option value="50">50 метров</option>
+                        <option value="100" >100 метров</option>
+                        <option value="200">200 метров</option>
+                        <option value="500">500 метров</option>
+                    </select>
+                </div>
+            </div>
+            <div className='result_geo' id='result_geo'>
+                <div className='locate'>
+                    <a className='locate_text'>Место на карте</a>
+                    <div className='autoCompleteItem place'>
+                        <a className='value'>
+                            {center.lat}{center.lng}
                         </a>
                     </div>
                 </div>

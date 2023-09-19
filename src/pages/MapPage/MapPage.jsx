@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useEffect} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import './MapPage.css';
 import SearchBlock from '../../Components/SearchBlock/SearchBlock';
 import ChannelLink from '../../Components/ChannelLink/ChannelLink';
@@ -54,21 +54,21 @@ const MapPage = () => {
         });
     })
 
-    
+
 
     return (
         <div className='MapPage'>
             <div className='Map'>
-            <div ref={mapContainer} className="map-container" />
-            <div className='current_location_icon' onClick={onGeoLocationPlaceSelect}>
-                <CurrentLocation />
+                <div ref={mapContainer} className="map-container" />
+                <div className='current_location_icon' onClick={onGeoLocationPlaceSelect}>
+                    <CurrentLocation />
+                </div>
             </div>
-        </div>
             <div className='link'>
-            <ChannelLink />
+                <ChannelLink />
             </div>
-            
-            <SearchBlock onSelect={onAutocompleteItemPlaceSelect}/>
+
+            <SearchBlock location={location} onSelect={onAutocompleteItemPlaceSelect} />
         </div>
     );
 };
