@@ -225,6 +225,7 @@ const SearchBlock = ({ location, onSelect }) => {
             })
             setAddress('test');
             setFlag(true)
+            stat = 2 //влияет на location_variants
             resizable.style.height = '40vh';
             resizable.style.marginTop = '60vh';
             input.style.display = 'none';
