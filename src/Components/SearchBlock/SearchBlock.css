@@ -102,6 +102,11 @@
     flex-direction: column;
 }
 
+.result_geo{
+    display: none;
+    flex-direction: column;
+}
+
 .locate{
     margin-top: 10px;
     margin-left: 10%;
