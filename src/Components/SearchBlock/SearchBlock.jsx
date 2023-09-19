@@ -9,7 +9,7 @@ import Map from '../Map/Map';
 const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "14ff958eb194fcb4809c2f0661a7c8a2549d4cd1";
 
-const SearchBlock = ({onSelect}) => {
+const SearchBlock = ({ onSelect }) => {
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp;
     const [flag, setFlag] = useState(false)
@@ -27,7 +27,7 @@ const SearchBlock = ({onSelect}) => {
     const [isOpen, setIsOpen] = useState(true);
 
 
-    const sendOrder = useCallback( () => {
+    const sendOrder = useCallback(() => {
 
         const formData = new FormData();
         // Добавляем параметры в объект FormData
@@ -50,12 +50,12 @@ const SearchBlock = ({onSelect}) => {
         navigate(0);
         tg.MainButton.hide();
     })
-    
+
     useEffect(() => {
         tg.BackButton.show()
-        if (radius != ""){
+        if (radius != "") {
             tg.MainButton.show()
-        }else{
+        } else {
             tg.MainButton.hide()
         }
 
@@ -240,19 +240,20 @@ const SearchBlock = ({onSelect}) => {
                 <ul className={"autoComplete"}>
                     {isOpen
                         ? Object.keys(articles).slice(0, 6).map(article => {
-                            return (
-                                <li className={"autoCompleteItem"}
-                                    onClick={(e) => onClickAutoCompleteItem(e, articles[article])}>
-                                    <a className='value'>
-                                        {
-                                            articles[article]['value'].replace(articles[article]['data']['region_with_type'] + ',', '')
-                                        }
-                                    </a>
-                                    <a className='city'>
-                                        {articles[article]['data']['city']}, {articles[article]['data']['region_with_type']}
-                                    </a>
-                                </li>
-                            );
+                            if (articles[article]['data']['geo_lat'])
+                                return (
+                                    <li className={"autoCompleteItem"}
+                                        onClick={(e) => onClickAutoCompleteItem(e, articles[article])}>
+                                        <a className='value'>
+                                            {
+                                                articles[article]['value'].replace(articles[article]['data']['region_with_type'] + ',', '')
+                                            }
+                                        </a>
+                                        <a className='city'>
+                                            {articles[article]['data']['city']}, {articles[article]['data']['region_with_type']}
+                                        </a>
+                                    </li>
+                                );
                         })
                         : null
                     }
@@ -272,9 +273,9 @@ const SearchBlock = ({onSelect}) => {
                 </div>
                 <div className='radius'>
                     <a className='locate_text'>Радиус области снимка</a>
-                    <select value={radius} 
-                    onChange={e => setRadius(e.target.value)}
-                    className='choice'>
+                    <select value={radius}
+                        onChange={e => setRadius(e.target.value)}
+                        className='choice'>
                         <option value="" selected>Укажите радиус снимка</option>
                         <option value="50">50 метров</option>
                         <option value="100" >100 метров</option>
