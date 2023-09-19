@@ -224,6 +224,7 @@ const SearchBlock = ({ location, onSelect }) => {
                 lng: location.coordinates.lng
             })
             setAddress('test');
+            setFlag(true)
             resizable.style.height = '40vh';
             resizable.style.marginTop = '60vh';
             input.style.display = 'none';
