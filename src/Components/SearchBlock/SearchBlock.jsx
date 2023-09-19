@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './SearchBlock.css'
 import { useSwipeable, SwipeEventData } from 'react-swipeable';
 import { useNavigate } from "react-router-dom";
-import { usePosition } from '../../Components/SearchBlock/usePosition';
 import { usePosition } from './usePosition';
 import { createOrder } from '../../http/orderApi';
 import Map from '../Map/Map';
