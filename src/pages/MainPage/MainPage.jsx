@@ -17,7 +17,7 @@ const MainPage = () => {
     return (
         <div className={'MainPage'}>
             <ChannelLink/>
-            <StoryBar/>
+            {/* <StoryBar/> */}
             <ButtonsBlock/>
             <OrderHistory/>
         </div>

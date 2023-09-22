@@ -334,7 +334,7 @@ const SearchBlock = ({ location, onSelect }) => {
                     <a className='locate_text'>Место на карте</a>
                     <div className='autoCompleteItem place'>
                         <a className='value'>
-                            {center.lat}{center.lng}
+                            {center.lat} {center.lng}
                         </a>
                     </div>
                 </div>
