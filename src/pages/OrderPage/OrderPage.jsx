@@ -144,7 +144,7 @@ const OrderPage = () => {
         // Добавляем параметры в объект FormData
         formData.append("chat_id", tg.initDataUnsafe.user.id);
         const filename = order.address + ' ' + order.lat + ' ' + order.lon + '.kml'
-        formData.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), fileName);
+        formData.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), filename);
 
 
         var params = {
