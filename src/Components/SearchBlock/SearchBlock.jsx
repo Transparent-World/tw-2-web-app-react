@@ -180,13 +180,13 @@ const SearchBlock = ({ location, onSelect }) => {
     }
 
 
-    const handlers = useSwipeable({
+    /*const handlers = useSwipeable({
         onSwiped: SwipeHeight,
         onTouchStartOrOnMouseDown: (({ event }) => event.preventDefault()),
         touchEventOptions: { passive: false },
         preventScrollOnSwipe: true,
         trackMouse: true
-    });
+    });*/
 
     const onClickAutoCompleteItem = (e, article) => {
         let resizable = document.getElementById('SearchBlock');
@@ -270,7 +270,7 @@ const SearchBlock = ({ location, onSelect }) => {
                     id='search_input'
                     placeholder="Введите адрес" />
             </div>
-            <div {...handlers} className='location_variants' id='location_variants'>
+            <div /*{...handlers}*/ className='location_variants' id='location_variants'>
                 <div className='geolocation' id='geolocation' onClick={onClickGeoButton}>
                     Запросить гелокацию
                 </div>
