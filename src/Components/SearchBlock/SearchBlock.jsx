@@ -219,6 +219,7 @@ const SearchBlock = ({ location, onSelect }) => {
         let location_variants = document.getElementById('location_variants');
         let input = document.getElementById('search');
         let result = document.getElementById('result_geo');
+        let button = document.getElementById('geolocation');
         if (location.loaded) {
             onSelect([location.coordinates.lng, location.coordinates.lat])
             setCenter({
@@ -234,6 +235,13 @@ const SearchBlock = ({ location, onSelect }) => {
             result.style.display = 'flex'
 
         }
+        button.style.background = 'green'
+        /*else {
+            location_variants.style.display = 'none';
+            resizable.style.marginTop = '60vh';
+            input.style.display = 'none';
+            result.style.display = 'none'
+        }*/
         //setCity(article['data']['city'] + ", " + article['data']['region_with_type'])
         //setAddress(article['value']);
         //setValue(article['value'].replace(article['data']['region_with_type'] + ',', ''))
