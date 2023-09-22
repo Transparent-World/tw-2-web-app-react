@@ -235,7 +235,9 @@ const SearchBlock = ({ location, onSelect }) => {
             result.style.display = 'flex'
 
         }
-        button.style.background = 'green'
+        else{
+            button.style.background = 'green'
+        }
         /*else {
             location_variants.style.display = 'none';
             resizable.style.marginTop = '60vh';
