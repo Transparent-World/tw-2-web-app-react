@@ -1,0 +1,43 @@
+body{
+    background:  #00060E;;
+}
+
+.subscription_plans_block {
+    columns: 2;
+    width: 335.593px;
+    height: 213.509px;
+    flex-shrink: 0;
+
+
+}
+
+.selected{
+    color: #AA1A17;
+}
+
+.main_text {
+    width: 327px;
+    height: 166px;
+    flex-shrink: 0;
+    color: #727A84;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19px;
+    /* 118.75% */
+    letter-spacing: 0.16px;
+}
+
+.main_choose_text {
+    width: 334px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.2px;
+}

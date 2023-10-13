@@ -1,0 +1,59 @@
+.subscription_card {
+    padding: 0;
+    width: 153.486px;
+    height: 92.994px;
+    border-radius: 10px;
+    background: #0D121A;
+    flex-direction: column;
+    box-shadow: 4px 4px 1px 1px #151C28;
+    margin-bottom: 20px;
+
+    display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.subscription_card:focus {
+    box-shadow: 4px 4px 1px 1px #aa1a17;
+
+
+}
+
+.line {
+    margin-top: 8px;
+    margin-bottom: 7px;
+    margin-left: 10px;
+    width: 133px;
+    height: 1px;
+    flex-shrink: 0;
+    border-radius: 0.5px;
+    background: #8B929B;
+}
+
+.month_text {
+    margin-top: 4px;
+    margin-left: 10px;
+    width: 71px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #8B929B;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+    letter-spacing: 0.16px;
+}
+
+.price_text {
+    text-align: center;
+    color: #8B929B;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 24px;
+    /* 100% */
+    letter-spacing: 1.2px;
+}
