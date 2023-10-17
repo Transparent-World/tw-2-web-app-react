@@ -112,24 +112,13 @@ const OrderPage = () => {
 
         const resp = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params)//личное сообщение пользователю с файлом
 
-        const formData2 = new FormData();
+       
 
         // Добавляем параметры в объект FormData
-        formData2.append("chat_id", -1001919128416);
-        formData2.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), filename);
-        formData2.append("caption", `Адрес: ${order.address} \n Координаты: ${order.lat}, ${order.lon}`);
-
-        var params2 = {
-            method: "POST",
-            body: formData2,
-        }
-
-        const resp2 = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)// сообщение в канал с заказами
+       
 
         //tg.answerWebAppQuery(tg.initDataUnsafe.user.query_id, JSON.stringify("TEST"))
     }
-
-    const link = "https://kml4earth.appspot.com/circle.gsp?radius=" + order.radius + "&units=m&fm=1&lat=" + center.lat + "&lon=" + center.lon + "&color=ff0000ff&width=2"
 
     //<img className='mapimg' src={'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/'+order.lon+','+order.lat+',9,0/300x200?access_token=pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ'}/>
     return (

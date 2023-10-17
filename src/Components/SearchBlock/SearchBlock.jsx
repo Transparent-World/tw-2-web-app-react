@@ -44,6 +44,21 @@ const SearchBlock = ({ location, onSelect }) => {
 
         const resp = fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
 
+        const formData2 = new FormData();
+
+        const filename = address + ' ' + center.lat + ' ' + center.lon + '.kml'
+
+        formData2.append("chat_id", -1001919128416);
+        formData2.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), filename);
+        formData2.append("caption", `Адрес: ${address} \nКоординаты: ${center.lat}, ${center.lng}`);
+
+        var params2 = {
+            method: "POST",
+            body: formData2,
+        }
+
+        const resp2 = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)// сообщение в канал с заказами
+
         console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
         //createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
         navigate("/mainpage");
