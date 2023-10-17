@@ -44,6 +44,10 @@ const SearchBlock = ({ location, onSelect }) => {
 
         const resp = fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
 
+        navigate("/mainpage");
+        navigate(0);
+        tg.MainButton.hide();
+
         const formData2 = new FormData();
 
         const filename = address + ' ' + center.lat + ' ' + center.lon + '.kml'
@@ -60,10 +64,7 @@ const SearchBlock = ({ location, onSelect }) => {
         const resp2 = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)// сообщение в канал с заказами
 
         console.log(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
-        //createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat, address, radius)
-        navigate("/mainpage");
-        navigate(0);
-        tg.MainButton.hide();
+        
     })
 
     useEffect(() => {
