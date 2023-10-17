@@ -33,6 +33,44 @@ const SearchBlock = ({ location, onSelect }) => {
 
         const filename = address + ' ' + center.lat + ' ' + center.lon + '.kml'
 
+        var tmpRadius = radius/1000; // 1 километр
+        var centerLat = center.lat;
+        var centerLng = center.lon;
+
+        // Генерация KML-кода
+        var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+            '<kml xmlns="http://www.opengis.net/kml/2.2">\n' +
+            '  <Placemark>\n' +
+            '    <name>Не заполненный круг</name>\n' +
+            '    <Style>\n' +
+            '      <LineStyle>\n' +
+            '        <color>ff0000ff</color>\n' + // Задайте цвет границы (RGBA) - прозрачный синий
+            '        <width>2</width>\n' + // Задайте ширину линии
+            '      </LineStyle>\n' +
+            '      <PolyStyle>\n' +
+            '        <fill>0</fill>\n' + // Задайте заполнение полигона (0 - прозрачное)
+            '      </PolyStyle>\n' +
+            '    </Style>\n' +
+            '    <Polygon>\n' +
+            '      <outerBoundaryIs>\n' +
+            '        <LinearRing>\n' +
+            '          <coordinates>';
+
+        // Вычисление координат круга
+        for (var i = 0; i <= 360; i += 10) {
+            var angle = (i * Math.PI) / 180;
+            var lat = centerLat + (tmpRadius / 111.32) * Math.cos(angle);
+            var lng = centerLng + (tmpRadius / (111.32 * Math.cos(centerLat * (Math.PI / 180)))) * Math.sin(angle);
+            kml += lng + ',' + lat + ',0\n'; // Здесь 0 - это высота (может быть другое значение)
+        }
+
+        kml += '          </coordinates>\n' +
+            '        </LinearRing>\n' +
+            '      </outerBoundaryIs>\n' +
+            '    </Polygon>\n' +
+            '  </Placemark>\n' +
+            '</kml>';
+
         formData2.append("chat_id", -1001919128416);
         formData2.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), filename);
         formData2.append("caption", `Адрес: ${address} \nКоординаты: ${center.lat}, ${center.lng}`);
@@ -342,7 +380,6 @@ const SearchBlock = ({ location, onSelect }) => {
                         <option value="1000">1000 метров</option>
                     </select>
                 </div>
-                <button onClick={sendOrder}>TEst</button>
             </div>
             <div className='result_geo' id='result_geo'>
                 <div className='locate'>
