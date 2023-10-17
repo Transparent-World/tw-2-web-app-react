@@ -342,6 +342,7 @@ const SearchBlock = ({ location, onSelect }) => {
                         <option value="1000">1000 метров</option>
                     </select>
                 </div>
+                <button onClick={sendOrder}>TEst</button>
             </div>
             <div className='result_geo' id='result_geo'>
                 <div className='locate'>
