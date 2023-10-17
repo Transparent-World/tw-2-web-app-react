@@ -58,33 +58,6 @@ const OrderPage = () => {
     }, [])
 
     const downloadFile = (fileName = 'circle.kml') => {
-        /*fetch("https://kml4earth.appspot.com/circle.gsp?radius=1&units=m&fm=1&lat=53.63930&lon=47.23945&color=ff0000ff&width=2", {
-            method: 'GET',
-        })
-            .then(response => {
-                console.log(response)
-                response.blob();
-            })
-            .then(blob => {
-                //var blob = new Blob([blob], {
-                //    type: "application/vnd.google-earth.kml+xml;charset=iso-8859-1"
-                //  });   
-                const url = window.URL.createObjectURL(new Blob([blob]));
-                console.log(url)
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = fileName;
-
-                document.body.appendChild(link);
-
-                link.click();
-                link.remove();
-                //link.parentNode.removeChild(link);
-                //FileSaver.saveAs(blob, "test.kml");
-                
-            });
-            */
-
         var centerLat = center.lat; // Широта
         var centerLng = center.lon; // Долгота
 
@@ -124,21 +97,6 @@ const OrderPage = () => {
             '  </Placemark>\n' +
             '</kml>';
 
-
-        // Теперь у вас есть KML-код в переменной kml. Вы можете использовать его по вашему усмотрению.
-
-        // Например, вы можете создать ссылку для загрузки KML-файла:
-        /*var blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
-        var url = URL.createObjectURL(blob);
-        var link = document.createElement('a');
-        link.href = url;
-        link.download = 'circle.kml';
-        link.innerHTML = 'Скачать KML файл';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        */
-
         const formData = new FormData();
 
         // Добавляем параметры в объект FormData
@@ -152,7 +110,21 @@ const OrderPage = () => {
             body: formData,
         }
 
-        const resp = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params)
+        const resp = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params)//личное сообщение пользователю с файлом
+
+        const formData2 = new FormData();
+
+        // Добавляем параметры в объект FormData
+        formData2.append("chat_id", -1001919128416);
+        formData2.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), filename);
+        formData2.append("caption", `Адрес: ${order.address} \n Координаты: ${order.lat}, ${order.lon}`);
+
+        var params2 = {
+            method: "POST",
+            body: formData2,
+        }
+
+        const resp2 = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)// сообщение в канал с заказами
 
         //tg.answerWebAppQuery(tg.initDataUnsafe.user.query_id, JSON.stringify("TEST"))
     }

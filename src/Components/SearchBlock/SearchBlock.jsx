@@ -322,10 +322,7 @@ const SearchBlock = ({ location, onSelect }) => {
                         onChange={e => setRadius(e.target.value)}
                         className='choice'>
                         <option value="" selected>Укажите радиус снимка</option>
-                        <option value="50">50 метров</option>
-                        <option value="100" >100 метров</option>
-                        <option value="200">200 метров</option>
-                        <option value="500">500 метров</option>
+                        <option value="1000">1000 метров</option>
                     </select>
                 </div>
             </div>
