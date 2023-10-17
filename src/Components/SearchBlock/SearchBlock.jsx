@@ -29,9 +29,7 @@ const SearchBlock = ({ location, onSelect }) => {
 
     const sendOrder = useCallback(() => {
         
-        const formData2 = new FormData();
-
-        const filename = address + ' ' + center.lat + ' ' + center.lon + '.kml'
+        
 
         var tmpRadius = radius/1000; // 1 километр
         var centerLat = center.lat;
@@ -71,15 +69,6 @@ const SearchBlock = ({ location, onSelect }) => {
             '  </Placemark>\n' +
             '</kml>';
 
-        formData2.append("chat_id", -1001919128416);
-        formData2.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), filename);
-        formData2.append("caption", `Адрес: ${address} \nКоординаты: ${center.lat}, ${center.lng}`);
-
-        var params2 = {
-            method: "POST",
-            body: formData2,
-        }
-        
 
         const resp = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)
 
@@ -100,13 +89,26 @@ const SearchBlock = ({ location, onSelect }) => {
 
         fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
 
+        const formData2 = new FormData();
+
+        const filename = address + ' ' + center.lat + ' ' + center.lon + '.kml'
+
+        formData2.append("chat_id", -1001919128416);
+        formData2.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), filename);
+        formData2.append("caption", `Адрес: ${address} \nКоординаты: ${center.lat}, ${center.lng}`);
+
+        var params2 = {
+            method: "POST",
+            body: formData2,
+        }
+
         
 
         // сообщение в канал с заказами
         navigate("/mainpage");  
         navigate(0);
         tg.MainButton.hide();
-    })
+    }, [address, center, ] )
 
     useEffect(() => {
         tg.BackButton.show()
