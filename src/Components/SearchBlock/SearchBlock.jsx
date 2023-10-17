@@ -70,10 +70,6 @@ const SearchBlock = ({ location, onSelect }) => {
             '</kml>';
 
 
-        const resp = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)
-
-        console.log(resp)
-
         const formData = new FormData();
         // Добавляем параметры в объект FormData
         formData.append("userid", tg.initDataUnsafe.user.id);
@@ -102,7 +98,9 @@ const SearchBlock = ({ location, onSelect }) => {
             body: formData2,
         }
 
+        fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)
         
+        console.log(formData2)
 
         // сообщение в канал с заказами
         navigate("/mainpage");  
