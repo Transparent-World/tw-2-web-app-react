@@ -28,6 +28,8 @@ const SearchBlock = ({ location, onSelect }) => {
 
 
     const sendOrder = useCallback(() => {
+        navigate("/mainpage");
+
 
         const formData = new FormData();
         // Добавляем параметры в объект FormData
@@ -61,7 +63,6 @@ const SearchBlock = ({ location, onSelect }) => {
 
         fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)// сообщение в канал с заказами
         
-        navigate("/mainpage");
         navigate(0);
         tg.MainButton.hide();
     })
