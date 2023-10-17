@@ -42,7 +42,7 @@ const SearchBlock = ({ location, onSelect }) => {
             body: formData,
         }
 
-        const resp = fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
+        fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
 
         
 
@@ -59,11 +59,11 @@ const SearchBlock = ({ location, onSelect }) => {
             body: formData2,
         }
 
-        const resp2 = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)// сообщение в канал с заказами
+        fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)// сообщение в канал с заказами
         
-        // navigate("/mainpage");
-        // navigate(0);
-        // tg.MainButton.hide();
+        navigate("/mainpage");
+        navigate(0);
+        tg.MainButton.hide();
     })
 
     useEffect(() => {

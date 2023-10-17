@@ -57,7 +57,7 @@ const OrderPage = () => {
         tg.BackButton.hide();
     }, [])
 
-    const downloadFile = (fileName = 'circle.kml') => {
+    const  downloadFile = (fileName = 'circle.kml') => {
         var centerLat = center.lat; // Широта
         var centerLng = center.lon; // Долгота
 
@@ -110,14 +110,14 @@ const OrderPage = () => {
             body: formData,
         }
 
-        const resp = fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params)//личное сообщение пользователю с файлом
+        fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params)//личное сообщение пользователю с файлом
 
        
 
         // Добавляем параметры в объект FormData
 
         //tg.answerWebAppQuery(tg.initDataUnsafe.user.query_id, JSON.stringify("TEST"))
-        //tg.close()
+        tg.close()
     }
 
     //<img className='mapimg' src={'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/'+order.lon+','+order.lat+',9,0/300x200?access_token=pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ'}/>
