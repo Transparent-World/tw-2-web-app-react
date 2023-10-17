@@ -28,7 +28,7 @@ const SearchBlock = ({ location, onSelect }) => {
 
 
     const sendOrder = useCallback(() => {
-        navigate("/mainpage");
+        
 
 
         const formData = new FormData();
@@ -60,6 +60,7 @@ const SearchBlock = ({ location, onSelect }) => {
             method: "POST",
             body: formData2,
         }
+        navigate("/mainpage");
 
         fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)// сообщение в канал с заказами
         
@@ -78,9 +79,9 @@ const SearchBlock = ({ location, onSelect }) => {
         //tg.onEvent('mainButtonClicked', )
         tg.onEvent('backButtonClicked', onBack)
         tg.onEvent('mainButtonClicked', sendOrder)
-        return () => {
-            tg.offEvent('mainButtonClicked', sendOrder)
-        }
+        // return () => {
+        //     tg.offEvent('mainButtonClicked', sendOrder)
+        // }
     }, [radius, sendOrder])
 
 
