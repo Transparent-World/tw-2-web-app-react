@@ -7,7 +7,7 @@ export const createOrder = async (userid, lon, lat, address, radius) => {
     return data
 }
 
-export const postMessagw = async (kml, address, center, ) => {
+export const postMessagw = async (kml, address, center) => {
     const formData = new FormData();
 
     const filename = address + ' ' + center.lat + ' ' + center.lon + '.kml'
