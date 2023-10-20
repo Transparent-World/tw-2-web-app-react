@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { usePosition } from './usePosition';
 import { createOrder } from '../../http/orderApi';
 import Map from '../Map/Map';
+import { postMessagw } from '../../http/orderApi';
 
 const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "14ff958eb194fcb4809c2f0661a7c8a2549d4cd1";
@@ -83,29 +84,16 @@ const SearchBlock = ({ location, onSelect }) => {
 
         fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
 
-        const formData2 = new FormData();
-
         kml = kmlFile(radius, center)
 
-        const filename = address + ' ' + center.lat + ' ' + center.lon + '.kml'
+        const resp = postMessagw(kml, address, center)
 
-        formData2.append("chat_id", -1001919128416);
-        formData2.append("document", new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' }), filename);
-        formData2.append("caption", `Адрес: ${address} \nКоординаты: ${center.lat}, ${center.lng}`);
+        console.log(resp)
 
-        var params2 = {
-            method: "POST",
-            body: formData2,
-        }
-
-        fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)
-        
-        console.log(filename, formData2)
-
-        // сообщение в канал с заказами
-        // navigate("/mainpage");  
-        // navigate(0);
-        // tg.MainButton.hide();
+        //сообщение в канал с заказами
+        navigate("/mainpage");  
+        navigate(0);
+        tg.MainButton.hide();
     }
 
     useEffect(() => {
