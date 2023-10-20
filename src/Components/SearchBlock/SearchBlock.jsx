@@ -26,14 +26,10 @@ const SearchBlock = ({ location, onSelect }) => {
     const [articles, setArticles] = useState([]);
     const [isOpen, setIsOpen] = useState(true);
 
-
-    const sendOrder = () => {
-        console.log(1)
-        var tmpRadius = radius/1000; // 1 километр
-        var centerLat = center.lat;
-        var centerLng = center.lon;
-
-        // Генерация KML-кода
+    const kmlFile = (rad, cent) => {
+        var tmpRadius = rad/1000; // 1 километр
+        var centerLat = cent.lat;
+        var centerLng = cent.lon;
         var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
             '<kml xmlns="http://www.opengis.net/kml/2.2">\n' +
             '  <Placemark>\n' +
@@ -67,7 +63,11 @@ const SearchBlock = ({ location, onSelect }) => {
             '  </Placemark>\n' +
             '</kml>';
 
+        return kml
+    }
 
+
+    const sendOrder = () => {
         const formData = new FormData();
         // Добавляем параметры в объект FormData
         formData.append("userid", tg.initDataUnsafe.user.id);
@@ -85,6 +85,8 @@ const SearchBlock = ({ location, onSelect }) => {
 
         const formData2 = new FormData();
 
+        kml = kmlFile(radius, center)
+
         const filename = address + ' ' + center.lat + ' ' + center.lon + '.kml'
 
         formData2.append("chat_id", -1001919128416);
@@ -101,9 +103,9 @@ const SearchBlock = ({ location, onSelect }) => {
         console.log(filename, formData2)
 
         // сообщение в канал с заказами
-        navigate("/mainpage");  
-        navigate(0);
-        tg.MainButton.hide();
+        // navigate("/mainpage");  
+        // navigate(0);
+        // tg.MainButton.hide();
     }
 
     useEffect(() => {
