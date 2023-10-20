@@ -27,7 +27,7 @@ const SearchBlock = ({ location, onSelect }) => {
     const [isOpen, setIsOpen] = useState(true);
 
 
-    const sendOrder = useCallback(() => {
+    const sendOrder = (() => {
         
         
 
@@ -100,13 +100,13 @@ const SearchBlock = ({ location, onSelect }) => {
 
         fetch("https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument", params2)
         
-        console.log(formData2)
+        console.log(filename, formData2)
 
         // сообщение в канал с заказами
         navigate("/mainpage");  
         navigate(0);
         tg.MainButton.hide();
-    }, [address, center, ] )
+    }, [address, center] )
 
     useEffect(() => {
         tg.BackButton.show()
