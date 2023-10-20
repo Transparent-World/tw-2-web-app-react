@@ -70,9 +70,9 @@ const SearchBlock = ({ location, onSelect }) => {
 
     const sendOrder = () => {
 
-        const resp = postMessagw(kml, address, center)
-
         kml = kmlFile(radius, center)
+
+        const resp = postMessagw(kml, address, center)        
 
         console.log(resp)
 
