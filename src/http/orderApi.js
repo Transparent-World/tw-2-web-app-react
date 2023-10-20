@@ -21,7 +21,8 @@ export const postMessagw = async (kml, address, center) => {
         body: formData,
     }
 
-    const { data } = await axios.post('https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument', params)
+    const { data } = await axios.post('https://api.telegram.org/bot6569140117:AAEpsZrhnE-1LjXRn04bkVqVUzSs_SSEAPs/sendDocument', {params: params})
+    console.log(data)
     return data
 }
 
