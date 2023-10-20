@@ -28,7 +28,7 @@ const SearchBlock = ({ location, onSelect }) => {
     const [isOpen, setIsOpen] = useState(true);
 
     const kmlFile = (rad, cent) => {
-        var tmpRadius = rad/1000; // 1 километр
+        var tmpRadius = rad / 1000; // 1 километр
         var centerLat = cent.lat;
         var centerLng = cent.lon;
         var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
@@ -69,33 +69,35 @@ const SearchBlock = ({ location, onSelect }) => {
 
 
     const sendOrder = () => {
+        try{
+            kml = kmlFile(radius, center)
+            const resp = postMessagw(kml, address, center)
 
-        kml = kmlFile(radius, center)
-
-        const resp = postMessagw(kml, address, center)        
-
-        console.log(resp)
+            console.log(resp)
 
 
-        const formData = new FormData();
-        // Добавляем параметры в объект FormData
-        formData.append("userid", tg.initDataUnsafe.user.id);
-        formData.append("lon", center.lng);
-        formData.append("lat", center.lat);
-        formData.append("address", address);
-        formData.append("radius", radius);
+            const formData = new FormData();
+            // Добавляем параметры в объект FormData
+            formData.append("userid", tg.initDataUnsafe.user.id);
+            formData.append("lon", center.lng);
+            formData.append("lat", center.lat);
+            formData.append("address", address);
+            formData.append("radius", radius);
 
-        var params = {
-            method: "POST",
-            body: formData,
+            var params = {
+                method: "POST",
+                body: formData,
+            }
+
+            fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
+
+            //сообщение в канал с заказами
+            navigate("/mainpage");
+            navigate(0);
+            tg.MainButton.hide();
+        }catch (e) {
+            console.log(e)
         }
-
-        fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
-
-        //сообщение в канал с заказами
-        navigate("/mainpage");  
-        navigate(0);
-        tg.MainButton.hide();
     }
 
     useEffect(() => {
@@ -282,7 +284,7 @@ const SearchBlock = ({ location, onSelect }) => {
             result.style.display = 'flex'
 
         }
-        else{
+        else {
             button.style.background = 'green'
         }
         /*else {
