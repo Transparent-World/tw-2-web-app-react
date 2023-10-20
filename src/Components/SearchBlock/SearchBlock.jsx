@@ -69,6 +69,14 @@ const SearchBlock = ({ location, onSelect }) => {
 
 
     const sendOrder = () => {
+
+        const resp = postMessagw(kml, address, center)
+
+        kml = kmlFile(radius, center)
+
+        console.log(resp)
+
+
         const formData = new FormData();
         // Добавляем параметры в объект FormData
         formData.append("userid", tg.initDataUnsafe.user.id);
@@ -83,12 +91,6 @@ const SearchBlock = ({ location, onSelect }) => {
         }
 
         fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
-
-        kml = kmlFile(radius, center)
-
-        const resp = postMessagw(kml, address, center)
-
-        console.log(resp)
 
         //сообщение в канал с заказами
         navigate("/mainpage");  
