@@ -70,12 +70,8 @@ const SearchBlock = ({ location, onSelect }) => {
 
     const sendOrder = () => {
         try{
-            const kml = kmlFile(radius, center)
-            const resp = postMessagw(kml, address, center)
-
-            console.log(resp)
-
-
+            
+            console.log(tg.initDataUnsafe.user.id, center, address, radius)
             const formData = new FormData();
             // Добавляем параметры в объект FormData
             formData.append("userid", tg.initDataUnsafe.user.id);
