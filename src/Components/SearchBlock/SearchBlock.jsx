@@ -27,10 +27,8 @@ const SearchBlock = ({ location, onSelect }) => {
     const [isOpen, setIsOpen] = useState(true);
 
 
-    const sendOrder = (() => {
-        
-        
-
+    const sendOrder = () => {
+        console.log(1)
         var tmpRadius = radius/1000; // 1 километр
         var centerLat = center.lat;
         var centerLng = center.lon;
@@ -106,7 +104,7 @@ const SearchBlock = ({ location, onSelect }) => {
         navigate("/mainpage");  
         navigate(0);
         tg.MainButton.hide();
-    }, [address, center] )
+    }
 
     useEffect(() => {
         tg.BackButton.show()
