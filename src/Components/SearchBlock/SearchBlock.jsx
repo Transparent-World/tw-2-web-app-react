@@ -72,19 +72,20 @@ const SearchBlock = ({ location, onSelect }) => {
         try{
             
             console.log(tg.initDataUnsafe.user.id, center, address, radius)
-            // const formData = new FormData();
-            // // Добавляем параметры в объект FormData
-            // formData.append("userid", tg.initDataUnsafe.user.id);
-            // formData.append("lon", center.lng);
-            // formData.append("lat", center.lat);
-            // formData.append("address", address);
-            // formData.append("radius", radius);
+            const formData = new FormData();
+            // Добавляем параметры в объект FormData
+            formData.append("userid", tg.initDataUnsafe.user.id);
+            formData.append("lon", center.lng);
+            formData.append("lat", center.lat);
+            formData.append("address", address);
+            formData.append("radius", radius);
 
-            // var params = {
-            //     method: "POST",
-            //     body: formData,
-            // }
-            createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat,  address, radius)
+            var params = {
+                method: "POST",
+                body: formData,
+            }
+            //createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat,  address, radius)
+            fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
 
             //сообщение в канал с заказами
             navigate("/mainpage");
