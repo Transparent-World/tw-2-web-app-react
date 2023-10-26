@@ -13,10 +13,10 @@ const MapPage = () => {
     const mapContainer = React.useRef(null);
     const map = React.useRef(null);
     const [center, setCenter] = useState({
-        lat: 55.45,
-        lng: 37.36
+        lat: 43.214673,
+        lng: 49.690732
     })
-    const [zoom, setZoom] = useState(9);
+    const [zoom, setZoom] = useState(1);
 
     const location = usePosition();
 
