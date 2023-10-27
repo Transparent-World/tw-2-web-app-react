@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useContext} from 'react';
 import './SearchBlock.css'
 import { useSwipeable, SwipeEventData } from 'react-swipeable';
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import { usePosition } from './usePosition';
 import { createOrder } from '../../http/orderApi';
 import Map from '../Map/Map';
 import { postMessagw } from '../../http/orderApi';
+import { observer} from 'mobx-react-lite';
+import { Context } from '../..';
 
 const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "14ff958eb194fcb4809c2f0661a7c8a2549d4cd1";
@@ -15,6 +17,7 @@ const radius_table = {
 }
 
 const SearchBlock = ({ location, onSelect }) => {
+    const { store } = useContext(Context)
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp;
     const [flag, setFlag] = useState(false)
@@ -74,8 +77,6 @@ const SearchBlock = ({ location, onSelect }) => {
 
     const sendOrder = () => {
         try{
-            
-            console.log(tg.initDataUnsafe.user.id, center, address, radius)
             const formData = new FormData();
             // Добавляем параметры в объект FormData
             formData.append("userid", tg.initDataUnsafe.user.id);
@@ -300,23 +301,31 @@ const SearchBlock = ({ location, onSelect }) => {
         else {
             button.style.background = 'green'
         }
-        /*else {
+    }
+
+    const onClickMapButton = () => {
+        let resizable = document.getElementById('SearchBlock');
+        let location_variants = document.getElementById('location_variants');
+        let input = document.getElementById('search');
+        let result = document.getElementById('result_map');
+        let button = document.getElementById('geolocation');
+        if (location.loaded) {
+            setCenter({
+                lat: location.coordinates.lat,
+                lng: location.coordinates.lng
+            })
+            setFlag(true)
+            stat = 2 //влияет на location_variants
+            resizable.style.height = '40vh';
             location_variants.style.display = 'none';
             resizable.style.marginTop = '60vh';
             input.style.display = 'none';
-            result.style.display = 'none'
-        }*/
-        //setCity(article['data']['city'] + ", " + article['data']['region_with_type'])
-        //setAddress(article['value']);
-        //setValue(article['value'].replace(article['data']['region_with_type'] + ',', ''))
-        //onChangeCity(e, 1);
-        /*resizable.style.height = '40vh';
-        resizable.style.marginTop = '60vh';
-        input.style.display = 'none';
-        result.style.display = 'flex'
-        console.log(status)
-        console.log(stat)*/
+            result.style.display = 'flex'
 
+        }
+        else {
+            button.style.background = 'green'
+        }
     }
 
     return (
@@ -338,8 +347,8 @@ const SearchBlock = ({ location, onSelect }) => {
                 <div className='geolocation' id='geolocation' onClick={onClickGeoButton}>
                     Запросить гелокацию
                 </div>
-                <div className='on_map_select'>
-                    "Выбрать на карте"
+                <div className='on_map_select' onClick={onClickMapButton}>
+                    Выбрать на карте
                 </div>
             </div>
             <div className='suggestions'>
@@ -407,8 +416,27 @@ const SearchBlock = ({ location, onSelect }) => {
                     </select>
                 </div>
             </div>
+            <div className='result_map' id='result_map'>
+                <div className='locate'>
+                    <a className='locate_text'>Место на карте</a>
+                    <div className='autoCompleteItem place'>
+                        <a className='value'>
+                            {store.lat} {store.lng}
+                        </a>
+                    </div>
+                </div>
+                <div className='radius'>
+                    <a className='locate_text'>Радиус области снимка</a>
+                    <select value={radius}
+                        onChange={e => setRadius(e.target.value) || showRadius(e.target.value)}
+                        className='choice'>
+                        <option value="" selected>Укажите радиус снимка</option>
+                        <option value="1000">1000 метров</option>
+                    </select>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default SearchBlock;
+export default observer(SearchBlock);

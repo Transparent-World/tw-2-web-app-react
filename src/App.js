@@ -2,6 +2,7 @@ import * as React from 'react';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './Components/AppRouter';
+import { observer} from 'mobx-react-lite';
 
 
 
@@ -13,4 +14,4 @@ function App() {
   );
 }
 
-export default App; 
+export default observer(App); 

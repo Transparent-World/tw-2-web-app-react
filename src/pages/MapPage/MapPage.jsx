@@ -1,21 +1,26 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useContext } from 'react';
 import './MapPage.css';
 import SearchBlock from '../../Components/SearchBlock/SearchBlock';
 import ChannelLink from '../../Components/ChannelLink/ChannelLink';
 import CurrentLocation from '../../Components/CurrentLocation/CurrentLocation';
 import { usePosition } from '../../Components/SearchBlock/usePosition';
 import mapboxgl from 'mapbox-gl';
+import { observer} from 'mobx-react-lite';
+import { Context } from '../..';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ';
 
 
 const MapPage = () => {
+    const { store } = useContext(Context)
     const mapContainer = React.useRef(null);
     const map = React.useRef(null);
     const [center, setCenter] = useState({
         lat: 43.214673,
         lng: 49.690732
     })
+    const [lng, setLng] = useState()
+    const [lat, setLat] = useState()
     const [zoom, setZoom] = useState(1);
 
     const location = usePosition();
@@ -63,6 +68,16 @@ const MapPage = () => {
         });
     })
 
+    useEffect(() => {
+        if (!map.current) return; // wait for map to initialize
+        map.current.on('move', () => {
+            store.setLng(map.current.getCenter().lng.toFixed(4));
+            store.setLat(map.current.getCenter().lat.toFixed(4));
+            setZoom(map.current.getZoom().toFixed(2));
+            console.log(map.current.getCenter().lng.toFixed(4), map.current.getCenter().lat.toFixed(4))
+        });
+    })
+
 
 
     return (
@@ -77,11 +92,11 @@ const MapPage = () => {
             <div className='link'>
                 <ChannelLink />
             </div>
-            
+
 
             <SearchBlock location={location} onSelect={onAutocompleteItemPlaceSelect} />
         </div>
     );
 };
 
-export default MapPage;
+export default observer(MapPage);
