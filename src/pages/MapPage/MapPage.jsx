@@ -21,11 +21,10 @@ const MapPage = () => {
     const location = usePosition();
 
     const onGeoLocationPlaceSelect = useCallback(() => {
-        console.log('click')
         if (location.loaded) {
-            console.log(JSON.stringify(location))
             map.current.flyTo({
-                center: [location.coordinates.lng, location.coordinates.lat]
+                center: [location.coordinates.lng, location.coordinates.lat],
+                zoom: 14.2
             });
         }
 
@@ -33,11 +32,21 @@ const MapPage = () => {
     }, [location])
 
     const onAutocompleteItemPlaceSelect = useCallback((coordinates) => {
-        console.log('click')
         if (coordinates) {
-            console.log(JSON.stringify(coordinates))
             map.current.flyTo({
-                center: coordinates
+                center: coordinates,
+                zoom: 14.2
+            });
+        }
+
+
+    }, [location])
+
+    const onRadiusSelect = useCallback((radius) => {
+        if (radius) {
+            map.current.flyTo({
+                center: coordinates,
+                zoom: 14.2
             });
         }
 
@@ -63,10 +72,12 @@ const MapPage = () => {
                 <div className='current_location_icon' onClick={onGeoLocationPlaceSelect}>
                     <CurrentLocation />
                 </div>
+                <div className='radius_circle' id='radius_circle'></div>
             </div>
             <div className='link'>
                 <ChannelLink />
             </div>
+            
 
             <SearchBlock location={location} onSelect={onAutocompleteItemPlaceSelect} />
         </div>

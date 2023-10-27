@@ -10,6 +10,10 @@ import { postMessagw } from '../../http/orderApi';
 const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "14ff958eb194fcb4809c2f0661a7c8a2549d4cd1";
 
+const radius_table = {
+    '1000': "14.2" 
+}
+
 const SearchBlock = ({ location, onSelect }) => {
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp;
@@ -224,6 +228,16 @@ const SearchBlock = ({ location, onSelect }) => {
         console.log('resized')
     }
 
+    const showRadius = (radius) => {
+        try{
+            console.log(radius_table[radius])
+            let circle = document.getElementById('radius_circle');
+            circle.style.display = 'block'
+        }catch (e) {
+            console.log(e)
+        }
+    }
+
 
     /*const handlers = useSwipeable({
         onSwiped: SwipeHeight,
@@ -234,6 +248,8 @@ const SearchBlock = ({ location, onSelect }) => {
     });*/
 
     const onClickAutoCompleteItem = (e, article) => {
+        //let circle = document.getElementById('circle');
+
         let resizable = document.getElementById('SearchBlock');
         let input = document.getElementById('search');
         let result = document.getElementById('result');
@@ -253,6 +269,7 @@ const SearchBlock = ({ location, onSelect }) => {
         resizable.style.height = '40vh';
         resizable.style.marginTop = '60vh';
         input.style.display = 'none';
+        //circle.style.display = 'block'
         result.style.display = 'flex'
         console.log(status)
         console.log(stat)
@@ -364,7 +381,7 @@ const SearchBlock = ({ location, onSelect }) => {
                 <div className='radius'>
                     <a className='locate_text'>Радиус области снимка</a>
                     <select value={radius}
-                        onChange={e => setRadius(e.target.value)}
+                        onChange={e => setRadius(e.target.value) || showRadius(e.target.value)}
                         className='choice'>
                         <option value="" selected>Укажите радиус снимка</option>
                         <option value="1000">1000 метров</option>
@@ -383,13 +400,10 @@ const SearchBlock = ({ location, onSelect }) => {
                 <div className='radius'>
                     <a className='locate_text'>Радиус области снимка</a>
                     <select value={radius}
-                        onChange={e => setRadius(e.target.value)}
+                        onChange={e => setRadius(e.target.value) || showRadius(e.target.value)}
                         className='choice'>
                         <option value="" selected>Укажите радиус снимка</option>
-                        <option value="50">50 метров</option>
-                        <option value="100" >100 метров</option>
-                        <option value="200">200 метров</option>
-                        <option value="500">500 метров</option>
+                        <option value="1000">1000 метров</option>
                     </select>
                 </div>
             </div>

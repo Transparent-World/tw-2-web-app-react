@@ -1,26 +1,59 @@
-
-.MapPage{
+.MapPage {
     height: 100%;
     width: 100%;
 }
 
-.link{
+.link {
     position: absolute;
     top: 0;
     left: 0;
-    
+
 }
 
-.map-container{
+.map-container {
     width: 100%;
     height: 65vh;
 }
 
 
-.current_location_icon{
+.current_location_icon {
     position: absolute;
     top: 0;
     right: 0;
     margin-right: 5px;
     margin-top: 52vh;
+}
+
+.rosshair {
+    width: 40px;
+    /* Ширина прицела */
+    height: 40px;
+    /* Высота прицела */
+    border: 2px solid red;
+    /* Цвет и стиль границы прицела */
+    position: absolute;
+    top: 50%;
+    /* Позиционируем по вертикали по середине карты */
+    left: 50%;
+    /* Позиционируем по горизонтали по середине карты */
+    transform: translate(-50%, -50%);
+    /* Центрируем по обеим осям */
+    border-radius: 50%;
+    /* Делаем прицел круглым */
+}
+
+.radius_circle {
+    display: none;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top:5%;
+    width: 50vh;
+    height: 50vh;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 50%;
 }
