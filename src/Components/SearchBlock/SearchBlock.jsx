@@ -82,7 +82,7 @@ const SearchBlock = ({ location, onRadiusSelect,onSelect }) => {
 
     useEffect(() => {
         tg.BackButton.show()
-        if (radius != "" && store.mode != 2) {
+        if (radius != "") {
             console.log(1)
             tg.MainButton.show()
             tg.MainButton.setParams({ text: 'Отправить запрос', is_visible: true })
