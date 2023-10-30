@@ -72,7 +72,6 @@ const MapPage = () => {
             store.setLng(map.current.getCenter().lng.toFixed(4));
             store.setLat(map.current.getCenter().lat.toFixed(4));
             setZoom(map.current.getZoom().toFixed(2));
-            console.log(map.current.getCenter().lng.toFixed(4), map.current.getCenter().lat.toFixed(4))
         });
     })
 
