@@ -98,7 +98,7 @@ const SearchBlock = ({ location, onRadiusSelect, onSelect }) => {
         // return () => {
         //     tg.offEvent('mainButtonClicked', sendOrder)
         // }
-    }, [])
+    })
 
 
 
