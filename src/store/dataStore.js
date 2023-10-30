@@ -5,6 +5,7 @@ export default class Store {
 
     lng = null
     lat = null
+    mode = 0
 
     constructor() {
         makeAutoObservable(this);
@@ -17,6 +18,10 @@ export default class Store {
 
     setLat(lat) {
         this.lat = lat;
+    }
+
+    setMode(mode){
+        this.mode = mode
     }
 
 }

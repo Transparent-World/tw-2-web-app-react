@@ -33,45 +33,24 @@ const SearchBlock = ({ location, onSelect }) => {
     const [radius, setRadius] = useState("")
     const [articles, setArticles] = useState([]);
     const [isOpen, setIsOpen] = useState(true);
+    
+    const onClickMapContinueButton = () => {
+        
+        let before = document.getElementById('result_map');
+        let after = document.getElementById('result_end_map');
+        let button = document.getElementById('geolocation');
+        if (location.loaded) {
+            setCenter({
+                lat: store.lat,
+                lng: store.lng
+            })
+            before.style.display = 'none';
+            after.style.display = 'flex'
 
-    const kmlFile = (rad, cent) => {
-        var tmpRadius = rad / 1000; // 1 километр
-        var centerLat = cent.lat;
-        var centerLng = cent.lon;
-        var kml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
-            '<kml xmlns="http://www.opengis.net/kml/2.2">\n' +
-            '  <Placemark>\n' +
-            '    <name>Не заполненный круг</name>\n' +
-            '    <Style>\n' +
-            '      <LineStyle>\n' +
-            '        <color>ff0000ff</color>\n' + // Задайте цвет границы (RGBA) - прозрачный синий
-            '        <width>2</width>\n' + // Задайте ширину линии
-            '      </LineStyle>\n' +
-            '      <PolyStyle>\n' +
-            '        <fill>0</fill>\n' + // Задайте заполнение полигона (0 - прозрачное)
-            '      </PolyStyle>\n' +
-            '    </Style>\n' +
-            '    <Polygon>\n' +
-            '      <outerBoundaryIs>\n' +
-            '        <LinearRing>\n' +
-            '          <coordinates>';
-
-        // Вычисление координат круга
-        for (var i = 0; i <= 360; i += 10) {
-            var angle = (i * Math.PI) / 180;
-            var lat = centerLat + (tmpRadius / 111.32) * Math.cos(angle);
-            var lng = centerLng + (tmpRadius / (111.32 * Math.cos(centerLat * (Math.PI / 180)))) * Math.sin(angle);
-            kml += lng + ',' + lat + ',0\n'; // Здесь 0 - это высота (может быть другое значение)
         }
-
-        kml += '          </coordinates>\n' +
-            '        </LinearRing>\n' +
-            '      </outerBoundaryIs>\n' +
-            '    </Polygon>\n' +
-            '  </Placemark>\n' +
-            '</kml>';
-
-        return kml
+        else {
+            button.style.background = 'green'
+        }
     }
 
 
@@ -103,11 +82,19 @@ const SearchBlock = ({ location, onSelect }) => {
 
     useEffect(() => {
         tg.BackButton.show()
-        if (radius != "") {
+        if (radius != ""  && store.mode != 2) {
+            console.log(1)
             tg.MainButton.show()
+            tg.MainButton.setParams({ text: 'Отправить запрос', is_visible: true})
+            tg.onEvent('mainButtonClicked', sendOrder)
+        } else if (store.lat != null && store.mode == 2){
+            console.log(2)
+            tg.MainButton.setParams({ text: 'Выбрать радиус', is_visible: true})
+            tg.onEvent('mainButtonClicked', onClickMapContinueButton)
         } else {
             tg.MainButton.hide()
         }
+        
 
         //tg.onEvent('mainButtonClicked', )
         tg.onEvent('backButtonClicked', onBack)
@@ -115,7 +102,9 @@ const SearchBlock = ({ location, onSelect }) => {
         // return () => {
         //     tg.offEvent('mainButtonClicked', sendOrder)
         // }
-    }, [radius, sendOrder])
+    }, [radius, sendOrder, onClickMapContinueButton])
+
+    
 
 
 
@@ -304,6 +293,7 @@ const SearchBlock = ({ location, onSelect }) => {
     }
 
     const onClickMapButton = () => {
+        store.setMode(2)
         let resizable = document.getElementById('SearchBlock');
         let location_variants = document.getElementById('location_variants');
         let input = document.getElementById('search');
@@ -327,6 +317,7 @@ const SearchBlock = ({ location, onSelect }) => {
             button.style.background = 'green'
         }
     }
+
 
     return (
         <div active className={'SearchBlock'} id='SearchBlock'>
@@ -422,6 +413,16 @@ const SearchBlock = ({ location, onSelect }) => {
                     <div className='autoCompleteItem place'>
                         <a className='value'>
                             {store.lat} {store.lng}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div className='result_end_map' id='result_map'>
+            <div className='locate'>
+                    <a className='locate_text'>Место на карте</a>
+                    <div className='autoCompleteItem place'>
+                        <a className='value'>
+                            {center.lat} {center.lng}
                         </a>
                     </div>
                 </div>
