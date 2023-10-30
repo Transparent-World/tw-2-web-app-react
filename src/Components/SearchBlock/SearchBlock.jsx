@@ -16,7 +16,7 @@ const radius_table = {
     '1000': "14.2"
 }
 
-const SearchBlock = ({ location, onRadiusSelect,onSelect }) => {
+const SearchBlock = ({ location, onRadiusSelect, onSelect }) => {
     const { store } = useContext(Context)
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp;
@@ -56,27 +56,28 @@ const SearchBlock = ({ location, onRadiusSelect,onSelect }) => {
 
     const sendOrder = () => {
         try {
-            if (radius == !null && center.lat != 23.45 && center.lng != 23.45) {
-            const formData = new FormData();
-            // Добавляем параметры в объект FormData
-            formData.append("userid", tg.initDataUnsafe.user.id);
-            formData.append("lon", center.lng);
-            formData.append("lat", center.lat);
-            formData.append("address", address);
-            formData.append("radius", radius);
+            if (radius != null && center.lat != 23.45 && center.lng != 23.45) {
+                const formData = new FormData();
+                // Добавляем параметры в объект FormData
+                formData.append("userid", tg.initDataUnsafe.user.id);
+                formData.append("lon", center.lng);
+                formData.append("lat", center.lat);
+                formData.append("address", address);
+                formData.append("radius", radius);
 
-            var params = {
-                method: "POST",
-                body: formData,
+                var params = {
+                    method: "POST",
+                    body: formData,
+                }
+                //createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat,  address, radius)
+                fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
+
+                //сообщение в канал с заказами
+
             }
-            //createOrder(tg.initDataUnsafe.user.id, center.lng, center.lat,  address, radius)
-            fetch("https://vercel-tw-test.vercel.app/api/order/create", params)
-
-            //сообщение в канал с заказами
             navigate("/mainpage");
             navigate(0);
             tg.MainButton.hide();
-        }
         } catch (e) {
             console.log(e)
         }
@@ -85,7 +86,6 @@ const SearchBlock = ({ location, onRadiusSelect,onSelect }) => {
     useEffect(() => {
         tg.BackButton.show()
         if (radius != "") {
-            console.log(1)
             tg.MainButton.show()
             tg.MainButton.setParams({ text: 'Отправить запрос', is_visible: true })
         } else {
@@ -221,7 +221,7 @@ const SearchBlock = ({ location, onRadiusSelect,onSelect }) => {
                 console.log(radius_table[radius])
                 let circle = document.getElementById('radius_circle');
                 circle.style.display = 'block'
-            }else{
+            } else {
                 let circle = document.getElementById('radius_circle');
                 circle.style.display = 'none'
             }
