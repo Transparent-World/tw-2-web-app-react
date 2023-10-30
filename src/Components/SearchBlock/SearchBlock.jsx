@@ -98,7 +98,6 @@ const SearchBlock = ({ location, onSelect }) => {
 
         //tg.onEvent('mainButtonClicked', )
         tg.onEvent('backButtonClicked', onBack)
-        tg.onEvent('mainButtonClicked', sendOrder)
         // return () => {
         //     tg.offEvent('mainButtonClicked', sendOrder)
         // }
