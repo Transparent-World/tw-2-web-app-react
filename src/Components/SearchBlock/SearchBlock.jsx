@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback, useContext} from 'react';
+import React, { useState, useRef, useEffect, useCallback, useContext } from 'react';
 import './SearchBlock.css'
 import { useSwipeable, SwipeEventData } from 'react-swipeable';
 import { useNavigate } from "react-router-dom";
@@ -6,17 +6,17 @@ import { usePosition } from './usePosition';
 import { createOrder } from '../../http/orderApi';
 import Map from '../Map/Map';
 import { postMessagw } from '../../http/orderApi';
-import { observer} from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
 import { Context } from '../..';
 
 const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "14ff958eb194fcb4809c2f0661a7c8a2549d4cd1";
 
 const radius_table = {
-    '1000': "14.2" 
+    '1000': "14.2"
 }
 
-const SearchBlock = ({ location, onSelect }) => {
+const SearchBlock = ({ location, onRadiusSelect,onSelect }) => {
     const { store } = useContext(Context)
     const navigate = useNavigate();
     const tg = window.Telegram.WebApp;
@@ -33,9 +33,9 @@ const SearchBlock = ({ location, onSelect }) => {
     const [radius, setRadius] = useState("")
     const [articles, setArticles] = useState([]);
     const [isOpen, setIsOpen] = useState(true);
-    
+
     const onClickMapContinueButton = () => {
-        
+
         let before = document.getElementById('result_map');
         let after = document.getElementById('result_end_map');
         let button = document.getElementById('geolocation');
@@ -55,7 +55,7 @@ const SearchBlock = ({ location, onSelect }) => {
 
 
     const sendOrder = () => {
-        try{
+        try {
             const formData = new FormData();
             // Добавляем параметры в объект FormData
             formData.append("userid", tg.initDataUnsafe.user.id);
@@ -75,35 +75,30 @@ const SearchBlock = ({ location, onSelect }) => {
             navigate("/mainpage");
             navigate(0);
             tg.MainButton.hide();
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 
     useEffect(() => {
         tg.BackButton.show()
-        if (radius != ""  && store.mode != 2) {
+        if (radius != "" && store.mode != 2) {
             console.log(1)
             tg.MainButton.show()
-            tg.MainButton.setParams({ text: 'Отправить запрос', is_visible: true})
-            tg.onEvent('mainButtonClicked', sendOrder)
-        } else if (store.lat != null && store.mode == 2){
-            console.log(2)
-            tg.MainButton.setParams({ text: 'Выбрать радиус', is_visible: true})
-            tg.onEvent('mainButtonClicked', onClickMapContinueButton)
+            tg.MainButton.setParams({ text: 'Отправить запрос', is_visible: true })
         } else {
             tg.MainButton.hide()
         }
-        
 
-        //tg.onEvent('mainButtonClicked', )
+
+        tg.onEvent('mainButtonClicked', sendOrder)
         tg.onEvent('backButtonClicked', onBack)
         // return () => {
         //     tg.offEvent('mainButtonClicked', sendOrder)
         // }
     }, [radius, sendOrder, onClickMapContinueButton])
 
-    
+
 
 
 
@@ -218,11 +213,18 @@ const SearchBlock = ({ location, onSelect }) => {
     }
 
     const showRadius = (radius) => {
-        try{
-            console.log(radius_table[radius])
-            let circle = document.getElementById('radius_circle');
-            circle.style.display = 'block'
-        }catch (e) {
+        try {
+            if (radius != 0) {
+                onRadiusSelect()
+                console.log(radius_table[radius])
+                let circle = document.getElementById('radius_circle');
+                circle.style.display = 'block'
+            }else{
+                let circle = document.getElementById('radius_circle');
+                circle.style.display = 'none'
+            }
+
+        } catch (e) {
             console.log(e)
         }
     }
@@ -382,7 +384,7 @@ const SearchBlock = ({ location, onSelect }) => {
                     <select value={radius}
                         onChange={e => setRadius(e.target.value) || showRadius(e.target.value)}
                         className='choice'>
-                        <option value="" selected>Укажите радиус снимка</option>
+                        <option value="0" selected>Укажите радиус снимка</option>
                         <option value="1000">1000 метров</option>
                     </select>
                 </div>
@@ -401,7 +403,7 @@ const SearchBlock = ({ location, onSelect }) => {
                     <select value={radius}
                         onChange={e => setRadius(e.target.value) || showRadius(e.target.value)}
                         className='choice'>
-                        <option value="" selected>Укажите радиус снимка</option>
+                        <option value="0" selected>Укажите радиус снимка</option>
                         <option value="1000">1000 метров</option>
                     </select>
                 </div>
@@ -415,9 +417,18 @@ const SearchBlock = ({ location, onSelect }) => {
                         </a>
                     </div>
                 </div>
+                <div className='radius'>
+                    <a className='locate_text'>Радиус области снимка</a>
+                    <select value={radius}
+                        onChange={e => setRadius(e.target.value) || showRadius(e.target.value)}
+                        className='choice'>
+                        <option value="0" selected>Укажите радиус снимка</option>
+                        <option value="1000">1000 метров</option>
+                    </select>
+                </div>
             </div>
             <div className='result_end_map' id='result_map'>
-            <div className='locate'>
+                <div className='locate'>
                     <a className='locate_text'>Место на карте</a>
                     <div className='autoCompleteItem place'>
                         <a className='value'>
@@ -430,7 +441,7 @@ const SearchBlock = ({ location, onSelect }) => {
                     <select value={radius}
                         onChange={e => setRadius(e.target.value) || showRadius(e.target.value)}
                         className='choice'>
-                        <option value="" selected>Укажите радиус снимка</option>
+                        <option value="0" selected>Укажите радиус снимка</option>
                         <option value="1000">1000 метров</option>
                     </select>
                 </div>

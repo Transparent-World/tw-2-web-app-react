@@ -47,13 +47,11 @@ const MapPage = () => {
 
     }, [location])
 
-    const onRadiusSelect = useCallback((radius) => {
-        if (radius) {
+    const onRadiusSelect = useCallback(() => {
             map.current.flyTo({
-                center: coordinates,
                 zoom: 14.2
-            });
-        }
+
+        })
 
 
     }, [location])
@@ -94,7 +92,7 @@ const MapPage = () => {
             </div>
 
 
-            <SearchBlock location={location} onSelect={onAutocompleteItemPlaceSelect} />
+            <SearchBlock location={location} onRadiusSelect={onRadiusSelect}onSelect={onAutocompleteItemPlaceSelect} />
         </div>
     );
 };
