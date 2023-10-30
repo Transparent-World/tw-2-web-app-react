@@ -56,7 +56,7 @@ const SearchBlock = ({ location, onRadiusSelect,onSelect }) => {
 
     const sendOrder = () => {
         try {
-            if (radius == !null || center.lat == 23.45 || center.lng == 23.45) {
+            if (radius == !null && center.lat != 23.45 && center.lng != 23.45) {
             const formData = new FormData();
             // Добавляем параметры в объект FormData
             formData.append("userid", tg.initDataUnsafe.user.id);
