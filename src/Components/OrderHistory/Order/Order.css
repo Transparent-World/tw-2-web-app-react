@@ -16,5 +16,9 @@
 }
 
 .order_address_preview{
+    max-width: 130;
+}
+
+.order_address_preview{
     font-size: 10px;
 }
