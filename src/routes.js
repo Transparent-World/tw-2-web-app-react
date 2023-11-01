@@ -2,10 +2,12 @@ import Admin from "./pages/Admin/Admin"
 import MainPage from "./pages/MainPage/MainPage"
 import OrderPage from "./pages/OrderPage/OrderPage"
 import MapPage from "./pages/MapPage/MapPage"
+import HistoryPage from "./pages/HistoryPage/HistoryPage"
 import { ORDER_ROUTE } from "./utils/consts.js"
 import { MAPPAGE_ROUTE } from "./utils/consts.js"
 import { MAINPAGE_ROUTE } from "./utils/consts.js"
 import { ADMIN_ROUTE } from "./utils/consts.js"
+import { HISTORY_ROUTE } from "./utils/consts.js"
 
 export const authRoutes = [
     {
@@ -26,5 +28,9 @@ export const publicRoutes = [
     {
         path: ORDER_ROUTE,
         Component: OrderPage,
-    }
+    },
+    {
+        path: HISTORY_ROUTE,
+        Component: HistoryPage,
+    },
 ]
