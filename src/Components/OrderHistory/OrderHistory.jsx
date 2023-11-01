@@ -11,7 +11,6 @@ const OrderHistory = observer(() => {
     const tg = window.Telegram.WebApp;
 
     useEffect(() => {
-        console.log(tg.initDataUnsafe.user.id)
         fetchOrders(tg.initDataUnsafe.user.id).then(resp => order.setOrders(resp.data))
        }, [])
 
@@ -20,7 +19,7 @@ const OrderHistory = observer(() => {
             <a className='OrderHistory_text'>История заказов</a>
             <div className='orders'>
             {order.orders.toReversed().map(order =>
-                <Order id={order.id} address={order.address}/>
+                <Order id={order.id} order = {order}/>
             )}
             </div>
         </div>

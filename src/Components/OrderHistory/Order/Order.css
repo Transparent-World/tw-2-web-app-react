@@ -1,24 +1,37 @@
 
 .Order{
-    flex: 0 0 152px;
-    min-width: 152px;
+    /* flex: 0 0 152px; */
+    /* min-width: 152px; */
     width: 152px;
     height: 78px;
     flex-shrink: 0;
     background: var(--tg-theme-bg-color);
     color: var(--tg-theme-hint-color);
+    background: grey;
     margin-left: 20px;
     font-size: 15px;
     padding: 10px;
     border-radius: 10px;
     display: flex;
+    position: relative;
     flex-direction: column;
+    
 }
 
 .order_address_preview{
-    max-width: 130;
+    overflow-wrap: normal;
+    overflow: auto;
+    display: flex;
+    width: 135px;
+    
 }
 
 .order_address_preview{
     font-size: 10px;
+}
+
+.order_text_filling{
+    display: flex;
+    position: relative;
+    flex-direction: column;
 }
