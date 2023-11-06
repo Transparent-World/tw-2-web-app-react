@@ -24,7 +24,7 @@ const HistoryPage = () => {
         return () => {
             tg.offEvent('backButtonClicked', backButtonClicked)
         }
-    }, [])
+    }, [backButtonClicked])
     return (
         <div className='history_page'>
             <div className='header_history_page'>
