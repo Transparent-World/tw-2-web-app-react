@@ -1,11 +1,29 @@
 import { $host } from './index';
 import axios from "axios";
+const Buffer = require('buffer').Buffer;
 
 
 export const createOrder = async (userid, lon, lat, address, radius) => {
     const { data } = await $host.post('api/order/create', { userid, lon, lat, address, radius })
     return data
 }
+
+
+export const getImageFromMapboxStaticAPI = async(longitude, latitude, width, height) => {
+    const accessToken = 'pk.eyJ1Ijoib3Rzb2Rpa292IiwiYSI6ImNsbDJzbGJ1eTA1cXgzaHF0amExd3RsbmcifQ.WVnp48kxoCMLuKjaCRD2hQ';
+    const url = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${longitude},${latitude},13/${width}x${height}?access_token=${accessToken}`;
+    
+    return axios.get(url, {responseType: 'arraybuffer'})
+      .then((response) => {
+        const image = Buffer.from(response.data, 'binary').toString('base64');
+        const src = `data:image/png;base64,${image}`;
+        console.log(src)
+        return src;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
 export const postMessagw = async (kml, address, center) => {
     

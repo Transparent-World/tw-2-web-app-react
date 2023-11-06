@@ -1,0 +1,41 @@
+.order2_block{
+    font-size: 14px;
+    min-width: 120px;
+    width: 47%;
+    height: 200px;
+    max-height: 200px;
+    background: #ffffff;
+    background: var(--tg-theme-bg-color);
+    margin-top: 12px;
+    border-radius: 20px;
+    padding-left: 2%;
+}
+
+.order2_block_img{
+    border-radius: 20px;
+    width: 97%;
+    height: 130px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0;
+}
+.order2_block_text{
+    margin-left: 5px;
+
+    overflow-wrap: normal;
+    overflow: auto;
+    width: 90%;
+    height: 35px;
+
+}
+.order2_block_button{
+    width: 95%;
+    height: 25px;
+    border-radius: 15px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    background: #f1f1f1;
+    background: var(--tg-theme-secondary-bg-color);
+    border: none;
+}
