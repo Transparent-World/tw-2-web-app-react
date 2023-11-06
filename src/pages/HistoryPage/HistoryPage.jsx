@@ -19,6 +19,7 @@ const HistoryPage = () => {
     }
 
     useEffect(() => {
+        tg.BackButton.show()
         tg.onEvent('backButtonClicked', backButtonClicked)
         return () => {
             tg.offEvent('backButtonClicked', backButtonClicked)
